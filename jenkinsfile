@@ -8,8 +8,7 @@ pipeline {
                 steps {
                     snDevOpsStep ()
                     echo "Building" 
-                    sh 'mvn -X clean install -DskipTests
-                    sleep 5
+                    sh 'mvn -X clean install -DskipTests'
                 }
        }
       stage("mvn test and get sreport") {
