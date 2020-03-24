@@ -1,0 +1,34 @@
+pipeline {
+   agent any
+   tools {
+      maven 'Maven'
+   }
+   stages {
+       stage("maven clean and build") {
+                steps {
+                    snDevOpsStep ()
+                    echo "Building" 
+                    sh 'mvn -X clean install -DskipTests'
+                }
+       }
+      stage("mvn test and get report") {
+           steps {
+               snDevOpsStep ()
+               sh 'mvn test'
+           }
+          post {
+                always {
+                    junit '**/target/surefire-reports/*.xml' 
+                }
+          }
+        }
+    
+      stage("sonar scan") {
+             steps{
+                  snDevOpsStep ()
+                  echo "sonar scan in progress"       
+              }
+      }      
+      
+  }
+}
