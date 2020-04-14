@@ -26,7 +26,8 @@ pipeline {
       stage("sonar scan") {
              steps{
                   snDevOpsStep ()
-                  echo "sonar scan in progress"       
+                  echo "sonar scan in progress"
+                  snDevOpsChange()
               }
       }      
       
