@@ -28,7 +28,15 @@ pipeline {
                   snDevOpsStep ()
                   echo "sonar scan in progress"       
               }
-      }      
+      }
+      
+       stage("deploy in to the non-prod env") {
+             steps{
+                  snDevOpsStep ()
+                  snDevOpsChange()
+                  echo "deployment started"       
+              }
+      }
       
   }
 }
