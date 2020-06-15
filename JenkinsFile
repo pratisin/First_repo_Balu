@@ -14,7 +14,7 @@ pipeline {
         stage('Test') { 
             steps {
                snDevOpsStep ()
-               snDevOpsChange()
+
                 sh 'mvn test'
                 sleep 30
             }
@@ -26,7 +26,16 @@ pipeline {
         }
     
        
-    
+ 	   stage('Deploy') { 
+	            steps {
+	               snDevOpsStep ()
+	               echo "deployment started"    
+	               snDevOpsChange()
+	                sh 'mvn clean installpackage'
+
+	            }
+	            
+	        }
 
       
   }
