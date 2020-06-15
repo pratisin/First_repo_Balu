@@ -4,7 +4,7 @@ pipeline {
       maven 'Maven'
    }
    stages {
-       stage("maven clean and build ") {
+       stage("mvn clean and build") {
                 steps {
                     snDevOpsStep ()
                     echo "Building" 
