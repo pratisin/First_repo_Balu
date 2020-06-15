@@ -31,7 +31,7 @@ pipeline {
 	               snDevOpsStep ()
 	               echo "deployment started"    
 	               snDevOpsChange()
-	                sh 'mvn clean installpackage'
+	                sh 'mvn clean install package'
 
 	            }
 	            
