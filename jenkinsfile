@@ -8,13 +8,13 @@ pipeline {
                 steps {
                     snDevOpsStep ()
                     echo 'Building'
-                    sh 'mvn -X clean install -DskipTests'
+                    
                 }
        }
       stage('Test') {
            steps {
                snDevOpsStep ()
-               sh 'mvn test'
+               
            }
           post {
                 always {
@@ -27,7 +27,7 @@ pipeline {
              steps{
                   snDevOpsStep ()
                   sleep 30
-                  echo "sonar scan in progress"       
+                  echo 'sonar scan in progress'      
               }
       }
       
@@ -35,7 +35,7 @@ pipeline {
              steps{
                   snDevOpsStep ()
                   snDevOpsChange()
-                  echo "deployment started"       
+                  echo 'deployment started'      
               }
       }
       
