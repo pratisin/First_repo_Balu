@@ -15,6 +15,7 @@ pipeline {
             steps {
                snDevOpsStep ()
                 sh 'mvn test'
+                sleep 30
             }
             post {
                 always {
