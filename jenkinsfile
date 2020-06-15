@@ -4,14 +4,14 @@ pipeline {
       maven 'Maven'
    }
    stages {
-       stage("mvn clean and compile") {
+       stage('Build') {
                 steps {
                     snDevOpsStep ()
                     echo "Building" 
                     sh 'mvn -X clean install -DskipTests'
                 }
        }
-      stage("mvn test and get sreport") {
+      stage('Test') {
            steps {
                snDevOpsStep ()
                sh 'mvn test'
@@ -23,7 +23,7 @@ pipeline {
           }
         }
     
-      stage("sonar scan and publish results") {
+      stage('Publish') {
              steps{
                   snDevOpsStep ()
                   sleep 30
@@ -31,7 +31,7 @@ pipeline {
               }
       }
       
-       stage("deploy in to the non-prod env") {
+       stage('Deploy') {
              steps{
                   snDevOpsStep ()
                   snDevOpsChange()
