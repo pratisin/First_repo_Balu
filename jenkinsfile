@@ -14,7 +14,7 @@ pipeline {
         stage('Test') { 
             steps {
                snDevOpsStep ()
-                sh 'mvn test'
+                mvn -Dtest="com/test/*Test" test
             }
             post {
                 always {
