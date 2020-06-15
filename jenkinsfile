@@ -5,25 +5,27 @@ pipeline {
 
     }
    stages {
-       stage ('Build') {
+   
+   stages {
+        stage('Build') {
             steps {
-                snDevOpsStep ()
-                echo "Build Started"
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
-            }
-            
-        }
-      stage('Test') {
-           steps {
                snDevOpsStep ()
-               echo "Test in progress"
-           }
-          post {
-                success {
-                    junit '**/target/surefire-reports/*.xml' 
-                }
-          }
+                sh 'mvn -B -DskipTests clean package'
+            }
         }
+        stage('Test') { 
+            steps {
+               snDevOpsStep ()
+                sh 'mvn test' 
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml' 
+                }
+            }
+        }
+    }
+       
     
       stage('Publish') {
              steps{
