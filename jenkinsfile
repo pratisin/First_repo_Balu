@@ -5,8 +5,6 @@ pipeline {
 
     }
    stages {
-   
-
         stage('Build') {
             steps {
                snDevOpsStep ()
@@ -16,7 +14,7 @@ pipeline {
         stage('Test') { 
             steps {
                snDevOpsStep ()
-                sh 'mvn test' 
+                sh 'mvn test'
             }
             post {
                 always {
