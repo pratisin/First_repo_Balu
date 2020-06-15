@@ -7,14 +7,14 @@ pipeline {
        stage('Build') {
                 steps {
                     snDevOpsStep ()
-                    echo 'Building'
+                    echo "Building"
                     
                 }
        }
       stage('Test') {
            steps {
                snDevOpsStep ()
-               
+               echo "Test in progress"
            }
           post {
                 always {
@@ -27,7 +27,7 @@ pipeline {
              steps{
                   snDevOpsStep ()
                   sleep 30
-                  echo 'sonar scan in progress'      
+                  echo "sonar scan in progress"     
               }
       }
       
