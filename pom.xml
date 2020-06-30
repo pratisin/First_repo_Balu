@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.test</groupId>
-	<artifactId>testArti</artifactId>
+	<artifactId>Sample</artifactId>
 
 	<dependencies>
 		<dependency>
@@ -12,28 +12,54 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>org.apache.maven.surefire</groupId>
+			<artifactId>surefire-junit47</artifactId>
+			<version>3.0.0-M5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.1.0</version>
+			<scope>test</scope>
+		</dependency>
 
- <properties>
-        <maven.resources.version>3.0.2</maven.resources.version>
-        <maven.compiler.version>3.8.0</maven.compiler.version>
-        <maven.surefire.version>2.22.0</maven.surefire.version>
-        <maven.failsafe.version>2.22.0</maven.failsafe.version>
-        <maven.verifier.version>1.1</maven.verifier.version>
-        <maven.clean.version>3.0.0</maven.clean.version>
-        <maven.build.helper.version>3.0.0</maven.build.helper.version>
-        <jetty.version>9.4.11.v20180605</jetty.version>
-        <jersey.version>2.27</jersey.version>
-    </properties>
-    
+	</dependencies>
+	<properties>
+		<maven.resources.version>3.0.2</maven.resources.version>
+		<maven.compiler.version>3.8.0</maven.compiler.version>
+		<maven.surefire.version>2.22.0</maven.surefire.version>
+		<maven.failsafe.version>2.22.0</maven.failsafe.version>
+		<maven.verifier.version>1.1</maven.verifier.version>
+		<maven.clean.version>3.0.0</maven.clean.version>
+		<maven.build.helper.version>3.0.0</maven.build.helper.version>
+		<jetty.version>9.4.11.v20180605</jetty.version>
+		<jersey.version>2.27</jersey.version>
+	</properties>
+
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<build>
-        <plugins>
-            <plugin>
-              <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.version}</version>
-            </plugin>
-            </plugins>
-            </build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>${jdk.level}</source>
+					<target>${jdk.level}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.version}</version>
+				<configuration>
+					<groups>com.test.Testcase1.class</groups>
+				</configuration>
+				<!-- <configuration> <suiteXmlFiles> TestNG suite XML files <suiteXmlFile>testng.xml</suiteXmlFile> 
+					</suiteXmlFiles> </configuration> -->
+			</plugin>
+		</plugins>
+	</build>
 </project>

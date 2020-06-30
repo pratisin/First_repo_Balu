@@ -3,11 +3,11 @@
  */
 package com.test;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
-import com.testtt.Library;
-
-import static org.junit.Assert.*;
+import com.lib.Library;
 
 public class LibraryTest {
     @Test public void testSomeLibraryMethod() {
