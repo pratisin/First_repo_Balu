@@ -1,5 +1,8 @@
 package com.test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -9,9 +12,10 @@ import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.testng.SkipException;
 
 public class Testcase1 {
 
@@ -39,7 +43,7 @@ public class Testcase1 {
 	@Test
 	@Category(com.test.Testcase1.class)
 	public void testmethod2() {
-//		fail("Not yet implemented");
+		assertTrue(true);
 	}
 	
 	public static String getPayload(final String fileNm) throws IOException, JSONException {
@@ -63,4 +67,32 @@ public class Testcase1 {
 	}
 
 
+	@Test
+	@Category(com.test.Testcase1.class)
+	public void testmethodforSkipTest() {
+		throw new SkipException("skipped test");
+	}
+	
+	@Test
+	@Category(com.test.Testcase1.class)
+	public void emptytest() {
+		
+
+	}
+	
+
+	@Test
+	@Category(com.test.Testcase1.class)
+	public void failedtest() {
+		
+		assertEquals(4, 5);
+	}
+	
+	@Ignore
+	@Test()
+	@Category(com.test.Testcase1.class)
+	public void disabledtest() {
+		System.out.println("disabled test");
+
+	}
 }
