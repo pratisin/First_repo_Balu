@@ -1,7 +1,9 @@
 package com.test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+
+
+import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,12 +17,12 @@ import org.json.JSONObject;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.testng.SkipException;
 
-public class Testcase1 {
+
+public class firstTest {
 
 	@Test
-	@Category(com.test.Testcase1.class)
+	@Category(com.test.firstTest.class)
 	public void testmethod1() throws JSONException, IOException {
 		
 		
@@ -41,7 +43,7 @@ public class Testcase1 {
 	
 	
 	@Test
-	@Category(com.test.Testcase1.class)
+	@Category(com.test.firstTest.class)
 	public void testmethod2() {
 		assertTrue(true);
 	}
@@ -67,14 +69,10 @@ public class Testcase1 {
 	}
 
 
-	@Test
-	@Category(com.test.Testcase1.class)
-	public void testmethodforSkipTest() {
-		throw new SkipException("skipped test");
-	}
+
 	
 	@Test
-	@Category(com.test.Testcase1.class)
+	@Category(com.test.firstTest.class)
 	public void emptytest() {
 		
 
@@ -82,15 +80,16 @@ public class Testcase1 {
 	
 
 	@Test
-	@Category(com.test.Testcase1.class)
+	@Category(com.test.firstTest.class)
 	public void failedtest() {
 		
-		assertEquals(4, 5);
+//		assertEquals(4, 5);
+		assertFalse(true, "balu-test is failed");
 	}
 	
 	@Ignore
 	@Test()
-	@Category(com.test.Testcase1.class)
+	@Category(com.test.firstTest.class)
 	public void disabledtest() {
 		System.out.println("disabled test");
 

@@ -22,11 +22,11 @@
 			<artifactId>json</artifactId>
 			<version>20180130</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.surefire</groupId>
-			<artifactId>surefire-junit47</artifactId>
-			<version>3.0.0-M5</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.maven.surefire</groupId> -->
+<!-- 			<artifactId>surefire-junit47</artifactId> -->
+<!-- 			<version>3.0.0-M5</version> -->
+<!-- 		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -63,13 +63,9 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven.surefire.version}</version>
-				<configuration>
-					<groups>com.test.Testcase1.class</groups>
-				</configuration>
-				<!-- <configuration> <suiteXmlFiles> TestNG suite XML files <suiteXmlFile>testng.xml</suiteXmlFile> 
-					</suiteXmlFiles> </configuration> -->
+				<version>2.22.2</version>
 			</plugin>
+
 		</plugins>
 	</build>
 </project>

@@ -6,7 +6,7 @@ public class JunitTestRunner {
 
 	
 	public static void main(String[] args) {
-	      Result result = JUnitCore.runClasses(Testcase1.class);
+	      Result result = JUnitCore.runClasses(firstTest.class);
 			
 	      for (Failure failure : result.getFailures()) {
 	         System.out.println(failure.toString());
