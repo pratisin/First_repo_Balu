@@ -18,10 +18,10 @@ pipeline {
                 // sh 'mvn test'
                 sleep 30
             }
-            /*  post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'
-                }*/
+            //  post {
+            //   always {
+            //       junit '**/target/surefire-reports/*.xml'
+            //  } 
             } 
         }
     
