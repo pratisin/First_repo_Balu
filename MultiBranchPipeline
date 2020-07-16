@@ -14,30 +14,24 @@ pipeline {
         stage('Test') { 
             steps {
                snDevOpsStep ()
-
                 sh 'mvn test'
-                sleep 30
             }
             post {
-           		success {
-                 junit '**/target/surefire-reports/*.xml'
-            	} 
-            } 
+                success {
+                    junit 'target/surefire-reports/*.xml' 
+                }
+            }
         }
     
        
- 	   stage('Deploy') { 
-	            steps {
-	               snDevOpsStep ()
-	               echo 'Deploying....'
-                	sleep 3
-	               snDevOpsChange()
-	               sh 'mvn clean install package'
 
-	            }
-	            
-	        }
-
+       stage('Deploy') {
+             steps{
+                  snDevOpsStep ()
+                  snDevOpsChange()
+                  echo 'deployment started'      
+              }
+      }
       
   }
 }
