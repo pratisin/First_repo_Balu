@@ -27,8 +27,9 @@ public class secondTest {
 
 	@Test
 	
-	public void test2() {
+	public void test2() throws InterruptedException {
 		assertTrue(true, "test is passed");
+		wait(20);
 	}
 
 	
