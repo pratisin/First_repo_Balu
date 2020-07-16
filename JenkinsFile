@@ -29,8 +29,10 @@ pipeline {
  	   stage('Deploy') { 
 	            steps {
 	               snDevOpsStep ()
+	               echo 'Deploying....'
+                sleep 3
 	               snDevOpsChange()
-	               sh 'mvn clean install package'
+	               // sh 'mvn clean install package'
 
 	            }
 	            
