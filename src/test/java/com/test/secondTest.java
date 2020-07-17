@@ -1,12 +1,12 @@
 package com.test;
 
-import org.testng.SkipException;
-import org.testng.annotations.Test;
-
 import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
+
+import org.testng.Assert;
+import org.testng.SkipException;
+import org.testng.annotations.Test;
 
 public class secondTest {
 
@@ -28,7 +28,7 @@ public class secondTest {
 	@Test
 	
 	public void test2() throws InterruptedException {
-		assertTrue(true, "test is passed");
+		Assert.assertTrue(true, "test is passed");
 		wait(20);
 	}
 

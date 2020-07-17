@@ -19,7 +19,7 @@ pipeline {
                 sleep 30
             }
             post {
-           		success {
+           		always {
                  junit '**/target/surefire-reports/*.xml'
             	} 
             } 
