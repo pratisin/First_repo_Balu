@@ -28,8 +28,10 @@ public class secondTest {
 	@Test
 	
 	public void test2() throws InterruptedException {
+		wait(2000);
+		Thread.sleep(5000);
 		assertTrue(true, "test is passed");
-		wait(20);
+		
 	}
 
 	
