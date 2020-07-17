@@ -18,11 +18,11 @@ pipeline {
                 // sh 'mvn test'
                 sleep 30
             }
-            /* post {
-           		success {
-                 junit '**/target/surefire-reports/*.xml'
-            	} 
-            }*/ 
+            // post {
+           	//	success {
+            //     junit '**/target/surefire-reports/*.xml'
+            //	} 
+            // } 
         }
     
        
