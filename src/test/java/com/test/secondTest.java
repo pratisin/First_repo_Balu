@@ -25,13 +25,12 @@ public class secondTest {
 		throw new RuntimeException();
 	}
 
-	@Test
-	
-	public void test2() throws InterruptedException {
-
-		wait(2000);
-		Thread.sleep(5000);
+	@Test	
+	public void test2() {
 		
+		for ( int i=0;i < 100000000; i++)
+			System.out.println();
+			
 		Assert.assertTrue(true, "test is passed");
 	}
 
