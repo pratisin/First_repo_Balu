@@ -28,7 +28,7 @@ public class secondTest {
 	@Test	
 	public void test2() {
 		
-		for ( int i=0;i < 100000000; i++)
+		for ( int i=0;i < 20000; i++)
 			System.out.println();
 			
 		Assert.assertTrue(true, "test is passed");
