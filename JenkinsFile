@@ -31,7 +31,7 @@ pipeline {
 	               echo 'Deploying....'
                 	sleep 3
 	               snDevOpsChange()
-	               sh 'mvn clean install package'
+	               //sh 'mvn clean install package'
 
 	            }
 	            
