@@ -19,15 +19,13 @@ pipeline {
                 sh 'mvn test'
                 sleep 10
             }
-            //post {
-           		//always {
-                 // junit '**/target/surefire-reports/*.xml'
-            	//} 
-            //} 
+            post {
+           	always {
+                 junit '**/target/surefire-reports/*.xml'
+            	} 
+            } 
         }
-    
-       
- 	   stage('Deploy') { 
+	stage('Deploy') { 
 	            steps {
 	               snDevOpsStep ()
 	               echo 'Deploying....'
