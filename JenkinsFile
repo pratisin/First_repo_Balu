@@ -9,14 +9,15 @@ pipeline {
             steps {
                snDevOpsStep ()
                 sh 'mvn -B -DskipTests clean compile'
+		sleep 10
             }
         }
         stage('Test') { 
             steps {
                snDevOpsStep ()
 
-                // sh 'mvn test'
-                sleep 30
+                sh 'mvn test'
+                sleep 10
             }
             //post {
            		//always {
@@ -32,7 +33,7 @@ pipeline {
 	               echo 'Deploying....'
                 	sleep 3
 	               snDevOpsChange()
-	               // sh 'mvn clean install package'
+	               sh 'mvn clean install package'
 
 	            }
 	            
