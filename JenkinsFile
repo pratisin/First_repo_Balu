@@ -9,7 +9,7 @@ pipeline {
             steps {
 
                //snDevOpsStep ()
-               snDevOpsStep (enabled:true)
+               snDevOpsStep ()
                //snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
                // snDevOpsStep (ignoreErrors:true) /* working 1.18 */
                // snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-               snDevOpsStep (enabled:true)
+               snDevOpsStep ()
 
                 sh 'mvn test'
                 sleep 10
@@ -35,7 +35,7 @@ pipeline {
 
 	stage('Deploy') { 
 	            steps {
-	               snDevOpsStep (enabled:true)
+	               snDevOpsStep ()
 	               echo 'Deploying....'
                 	sleep 3
 	               snDevOpsChange()
