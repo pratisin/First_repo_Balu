@@ -1,0 +1,62 @@
+{
+  "object_kind": "push",
+  "event_name": "push",
+  "before": "6218711eb674b3e148011140e9ca325796866507",
+  "after": "2ed90933a3b784602054fdb0864dde5972b7ff02",
+  "ref": "refs/heads/master",
+  "checkout_sha": "2ed90933a3b784602054fdb0864dde5972b7ff02",
+  "message": null,
+  "user_id": 1,
+  "user_name": "Administrator",
+  "user_username": "root",
+  "user_email": "",
+  "user_avatar": "https://www.gravatar.com/avatar/e64c7d89f26bd1972efa854d13d7dd61?s=80&d=identicon",
+  "project_id": 12,
+  "project": {
+    "id": 12,
+    "name": "family release",
+    "description": "",
+    "web_url": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release",
+    "avatar_url": null,
+    "git_ssh_url": "ssh://git@gitlab2.sndevops.xyz:2222/automation/apps-hr/family-release.git",
+    "git_http_url": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release.git",
+    "namespace": "apps HR",
+    "visibility_level": 0,
+    "path_with_namespace": "automation/apps-hr/family-release",
+    "default_branch": "master",
+    "ci_config_path": null,
+    "homepage": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release",
+    "url": "ssh://git@gitlab2.sndevops.xyz:2222/automation/apps-hr/family-release.git",
+    "ssh_url": "ssh://git@gitlab2.sndevops.xyz:2222/automation/apps-hr/family-release.git",
+    "http_url": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release.git"
+  },
+  "commits": [
+    {
+      "id": "2ed90933a3b784602054fdb0864dde5972b7ff02",
+      "message": "Update README.md",
+      "title": "Update README.md",
+      "timestamp": "2020-06-29T20:24:35+00:00",
+      "url": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release/-/commit/2ed90933a3b784602054fdb0864dde5972b7ff02",
+      "author": {
+        "name": "Administrator",
+        "email": "admin@example.com"
+      },
+      "added": [],
+      "modified": [
+        "README.md"
+      ],
+      "removed": []
+    }
+  ],
+  "total_commits_count": 1,
+  "push_options": {},
+  "repository": {
+    "name": "family release",
+    "url": "ssh://git@gitlab2.sndevops.xyz:2222/automation/apps-hr/family-release.git",
+    "description": "",
+    "homepage": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release",
+    "git_http_url": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release.git",
+    "git_ssh_url": "ssh://git@gitlab2.sndevops.xyz:2222/automation/apps-hr/family-release.git",
+    "visibility_level": 0
+  }
+}

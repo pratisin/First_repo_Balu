@@ -1,0 +1,45 @@
+pipeline {
+   agent any
+   tools {
+        maven 'Maven'
+
+    }
+   stages {
+        stage('Build') {
+            steps {
+               snDevOpsStep ()
+                sh 'mvn -B -DskipTests clean compile'
+            }
+        }
+        stage('Test') { 
+            steps {
+               snDevOpsStep ()
+                //sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml' 
+                }
+            }
+        }
+    
+       
+    
+      stage('Publish') {
+             steps{
+                  snDevOpsStep ()
+                  sleep 30
+                  echo "sonar scan in progress"     
+              }
+      }
+      
+       stage('Deploy') {
+             steps{
+                  snDevOpsStep ()
+                  snDevOpsChange()
+                  echo 'deployment started'      
+              }
+      }
+      
+  }
+}

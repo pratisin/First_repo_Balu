@@ -1,0 +1,53 @@
+{
+  "object_kind": "build",
+  "ref": "master",
+  "tag": false,
+  "before_sha": "0000000000000000000000000000000000000000",
+  "sha": "fe2f1c8f31d808cdd6ddec57dec3f5e5e019032d",
+  "build_id": 50,
+  "build_name": "buildfamilyrelease",
+  "build_stage": "build",
+  "build_status": "running",
+  "build_started_at": "2020-06-28 09:49:42 UTC",
+  "build_finished_at": null,
+  "build_duration": 0.221011185,
+  "build_allow_failure": false,
+  "build_failure_reason": "unknown_failure",
+  "pipeline_id": 50,
+  "runner": {
+    "id": 1,
+    "description": "Local runner 1",
+    "active": true,
+    "is_shared": false
+  },
+  "project_id": 50,
+  "project_name": "Automation / apps HR / family release",
+  "user": {
+    "name": "Administrator",
+    "username": "root",
+    "avatar_url": "https://www.gravatar.com/avatar/e64c7d89f26bd1972efa854d13d7dd61?s=80&d=identicon",
+    "email": "admin@example.com"
+  },
+  "commit": {
+    "id": 100,
+    "sha": "fe2f1c8f31d808cdd6ddec57dec3f5e5e019031d",
+    "message": "Update .gitlab-ci.yml",
+    "author_name": "Administrator",
+    "author_email": "admin@example.com",
+    "author_url": "http://gitlab2.sndevops.xyz/root",
+    "status": "pending",
+    "duration": null,
+    "started_at": null,
+    "finished_at": null
+  },
+  "repository": {
+    "name": "family release",
+    "url": "ssh://git@gitlab2.sndevops.xyz:2222/automation/apps-hr/family-release.git",
+    "description": "",
+    "homepage": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release",
+    "git_http_url": "http://gitlab2.sndevops.xyz/automation/apps-hr/family-release.git",
+    "git_ssh_url": "ssh://git@gitlab2.sndevops.xyz:2222/automation/apps-hr/family-release.git",
+    "visibility_level": 0
+  }
+
+}
