@@ -1,9 +1,5 @@
 package com.test;
 
-import static org.testng.Assert.assertFalse;
-
-import java.io.IOException;
-
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
@@ -29,7 +25,7 @@ public class secondTest {
 	public void test2() {
 		
 		for ( int i=0;i < 2000; i++)
-			System.out.println();
+			System.out.println("testing jenkins....");
 			
 		Assert.assertTrue(true, "test is passed");
 	}
