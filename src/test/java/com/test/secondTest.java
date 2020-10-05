@@ -2,7 +2,7 @@ package com.test;
 
 import static org.testng.Assert.assertFalse;
 
-import java.io.IOException;
+//import static org.junit.Assert.assertFalse;
 
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -10,37 +10,35 @@ import org.testng.annotations.Test;
 
 public class secondTest {
 
-	@Test
-	public void fail1() {
-		throw new NullPointerException("Will fail");
-	}
+//	@Test
+//	public void fail1() {
+//		throw new NullPointerException("Will fail");
+//	}
+
+//	@Test
+//	public void fail2() throws IOException {
+//		throw new IOException("Will fail");
+//	}
+
+//	@Test
+//	public void test1() {
+//		throw new RuntimeException();
+//	}
 
 	@Test
-	public void fail2() throws IOException {
-		throw new IOException("Will fail");
-	}
+	public void test2() {
 
-	@Test
-	public void test1() {
-		throw new RuntimeException();
-	}
+		for (int i = 0; i < 200; i++)
+			System.out.println("testing jenkins....");
 
-	@Test
-	
-	public void test2() throws InterruptedException {
-
-		wait(2000);
-		Thread.sleep(5000);
-		
 		Assert.assertTrue(true, "test is passed");
 	}
 
-	
-	@Test
-	public void test5() {
-		assertFalse(true, "test is failed");
-	}
-	
+//	@Test
+//	public void test5() {
+//		assertFalse(true, "test is failed");
+//	}
+
 	@Test
 	public void testskipped() {
 		throw new SkipException("skipped");
