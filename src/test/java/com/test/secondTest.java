@@ -6,10 +6,10 @@ import org.testng.annotations.Test;
 
 public class secondTest {
 
-//	@Test
-//	public void fail1() {
-//		throw new NullPointerException("Will fail");
-//	}
+	@Test
+	public void fail1() {
+		throw new NullPointerException("Will fail");
+	}
 
 //	@Test
 //	public void fail2() throws IOException {
