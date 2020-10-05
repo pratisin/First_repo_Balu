@@ -29,6 +29,7 @@ pipeline {
             	} 
             }
         }
+
 	stage('Deploy') { 
 	            steps {
 	               snDevOpsStep ()
@@ -40,6 +41,7 @@ pipeline {
 	            }
 	            
 	        }
+
 
       
   }
