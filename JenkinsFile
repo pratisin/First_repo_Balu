@@ -7,18 +7,20 @@ pipeline {
    stages {
         stage('Build') {
             steps {
+
                //snDevOpsStep ()
                snDevOpsStep (enabled:true)
                //snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
                // snDevOpsStep (ignoreErrors:true) /* working 1.18 */
                // snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
                sh 'mvn -B -DskipTests clean compile'
-		sleep 10
+				sleep 10
+
             }
         }
         stage('Test') { 
             steps {
-               snDevOpsStep ()
+               snDevOpsStep (enabled:true)
 
                 sh 'mvn test'
                 sleep 10
@@ -28,11 +30,12 @@ pipeline {
                  junit '**/target/surefire-reports/*.xml'
             	} 
             }
+
         }
 
 	stage('Deploy') { 
 	            steps {
-	               snDevOpsStep ()
+	               snDevOpsStep (enabled:true)
 	               echo 'Deploying....'
                 	sleep 3
 	               snDevOpsChange()
