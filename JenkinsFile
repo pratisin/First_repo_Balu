@@ -60,7 +60,7 @@ pipeline {
 
 					// snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "devops_pipeline_demo.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "First_repo"}],"stageName": "PublishArtifacts"}""")            
 
-					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "First_repo.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "First_repo"}],"stageName": "PublishArtifacts"}""")            
+					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "first_repo.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "first_repo"}],"stageName": "PublishArtifacts"}""")            
 	               //snDevOpsArtifact(artifactsPayload: """{"artifacts":[{"name":"sa-web.jar","version":"3.1","semanticVersion":"3.1.0","repositoryName":"services-1031"}]}""")
 
 	            }
@@ -74,7 +74,7 @@ pipeline {
                 	sleep 3
 					// snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}]}""")
 						snDevOpsPackage(name: "balu_package",
-						artifactsPayload: """{"artifacts":[{"name":"first_repo.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName":"First_repo"}],"branchName":"master"}""")
+						artifactsPayload: """{"artifacts":[{"name":"first_repo.jar","version":"${artifactVersion}","repositoryName":"first_repo"}],"branchName":"master"}""")
 					//snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","pipelineName": "PublishArtifacts","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}]}""")
 	            }
 	            
