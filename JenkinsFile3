@@ -7,7 +7,7 @@ pipeline {
     stage('Build') 
     {
 
-		stage('dev') {
+		stage('Build') {
 
     	 when {branch 'dev'}
 
@@ -19,7 +19,7 @@ pipeline {
 
   		}
 
-		  stage('master') {
+		  stage('Build') {
 		
 		    when {branch 'master'}
 		    steps {
