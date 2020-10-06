@@ -74,7 +74,7 @@ pipeline {
                 	sleep 3
 					// snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}]}""")
 						snDevOpsPackage(name: "balu_package",
-						artifactsPayload: """{"artifacts":[{"name":"first_repo.jar","repositoryName":"first_repo","currentBuildInfo":"true"}],"branchName":"master"}""")
+						artifactsPayload: """{"artifacts":[{"name":"first_repo.jar","repositoryName":"first_repo","version": "3.1"}],"branchName":"master"}""")
 					//snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","pipelineName": "PublishArtifacts","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}]}""")
 	            }
 	            
