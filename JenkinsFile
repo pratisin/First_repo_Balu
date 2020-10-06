@@ -44,7 +44,7 @@ pipeline {
 	               snDevOpsStep ()
 	               echo 'Deploying....'
                 	sleep 3
-	               snDevOpsChange()
+	               //snDevOpsChange()
 	               //sh 'mvn clean install package'
 
 	            }
