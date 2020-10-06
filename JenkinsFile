@@ -72,7 +72,7 @@ pipeline {
 	               snDevOpsStep ()
 	               echo 'Publishing Package....'
                 	sleep 3
-					snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"10","stageName":"PublishPackage","branchName": "master"}""")
+					snDevOpsPackage(artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"10","stageName":"PublishPackage","branchName": "master"}""")
 						//snDevOpsPackage(name: "balu_package",
 						//artifactsPayload: """{"artifacts":[{"name":"first_repo.jar","version":"${version}","repositoryName":"first_repo"}],"stageName":"PublishPackage","branchName":"master"}""")
 					//snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","pipelineName": "PublishArtifacts","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}]}""")
