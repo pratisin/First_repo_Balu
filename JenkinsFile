@@ -44,8 +44,29 @@ pipeline {
 	            }
 	            
 	        }
+	        
+	        stage('PublishArtifacts') { 
+	            steps {
+	               snDevOpsStep ()
+	               echo 'Publishing Artifacts....'
+                	sleep 3
+	               snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "First_repo"}]}""")
+	               
 
+	            }
+	            
+	        }
 
+	        stage('PublishPackage') { 
+	            steps {
+	               snDevOpsStep ()
+	               echo 'Publishing Package....'
+                	sleep 3
+					snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "sa-web-ui.jar","repositoryName": "First_repo","version":"1.92"}]}""")
+
+	            }
+	            
+	        }
       
   }
 }
