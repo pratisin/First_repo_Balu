@@ -4,32 +4,52 @@ pipeline {
         maven 'Maven'
     }
     
-    stage('Build') 
-    {
-
-		stage('Build') {
-
-    	 when {branch 'dev'}
-
-    	 	steps {
-				echo 'Deploying in dev branch....'
-				snDevOpsStep ()
-				snDevOpsChange()
-	 		}
-
-  		}
-
-		  stage('Build') {
-		
-		    when {branch 'master'}
-		    steps {
-				echo 'Deploying in master branch....'
-				snDevOpsStep ()
-				snDevOpsChange()
-			}
-		
-		  }
-
-	}
+    stage('Build') {
+            stages {
+                stage("Staging-Deploy") {
+                    steps {
+                        snDevOpsStep()
+                        echo 'test'
+                    }
+                }
+                stage("Send-Report") {
+                    stages {
+                        stage("Alert-If-Issues") {
+                            steps {
+                                snDevOpsStep()
+                                echo 'test'
+                            }
+                        }
+                        stage("Conclude") {
+                            steps {
+                                snDevOpsStep()
+                                echo 'test'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Test') {
+            parallel {
+                stage('UAT test test1') {
+                    steps {
+                         echo 'test'
+                    }
+                    post {
+                        success {
+                            echo 'test'
+                        }
+                    }
+                }
+                stage('UAT static code test') {
+                    steps {
+                        snDevOpsStep()
+                        snDevOpsChange()
+                            echo 'test'
+                    }
+                }
+            }
+        }
    
 }
