@@ -33,13 +33,7 @@ pipeline {
                     echo 'Deploying....'
                  }
       }
-     stage('PublishArtifacts') {
-         steps {
-            snDevOpsStep()
-            echo 'Publishing Artifacts....'
-            snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "first_repo.jar","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "first_repo"}],"stageName": "PublishArtifacts"}""")           
-         }
-     }
+
      stage('PublishPackage') {
          steps {
             snDevOpsStep()
