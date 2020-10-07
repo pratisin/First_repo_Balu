@@ -1,7 +1,7 @@
 def artifactname = "sp-boot-app.jar"
 def repoName = "sp-boot-app-repo"
 def pipelineName = "devops_vk_pipeline"
-def semanticVersion = "{env.BUILD_NUMBER}.0.0"
+def semanticVersion = "${env.BUILD_NUMBER}.0.0"
 def packageName = "spboot-package_${env.BUILD_NUMBER}"
 def version = "${env.BUILD_NUMBER}.0"
 pipeline {
