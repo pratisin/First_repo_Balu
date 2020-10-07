@@ -10,23 +10,23 @@ pipeline {
         stage('Build') {
             agent any 
             steps {
-                //snDevOpsStep()
+                snDevOpsStep()
                 echo 'Building..'
                 checkout scm
                 sh 'mvn --version'
-                sh 'mvn clean install -DskipTests'
+                //sh 'mvn clean install -DskipTests'
                 snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
             }
         }
         stage('Test') {
             agent any 
             steps {
-                //snDevOpsStep()
+                snDevOpsStep()
                 echo 'Testing..'
-                sh 'mvn test'
+                //sh 'mvn test'
             }
 			post {
-       		   always {
+       		   success {
           		    junit '**/target/surefire-reports/*.xml'
 			  }
         	}
@@ -34,7 +34,7 @@ pipeline {
 		stage('package') { 
             agent any 
             steps {
-                //snDevOpsStep()
+                snDevOpsStep()
                 echo 'Packaging..'
                 snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
                 snDevOpsChange()
@@ -43,12 +43,12 @@ pipeline {
 		stage('UAT') {
             agent any 
             steps {
-                //snDevOpsStep()
+                snDevOpsStep()
                 echo 'Testing again..'
 				sh 'mvn -Dtest=com.integration.* clean test'
             }
 			post {
-       		    always {
+       		    success {
           		    junit '**/target/surefire-reports/*.xml'
 				}
         	}
