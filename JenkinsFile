@@ -1,99 +1,54 @@
 def artifactname = "sp-boot-app.jar"
 def repoName = "sp-boot-app-repo"
 def pipelineName = "devops_vk_pipeline"
-def semanticVersion = "${env.BUILD_NUMBER}.0.0"
+def semanticVersion = "{env.BUILD_NUMBER}.0.0"
 def packageName = "spboot-package_${env.BUILD_NUMBER}"
 def version = "${env.BUILD_NUMBER}.0"
 pipeline {
-   agent any
-   tools {
-        maven 'Maven'
-
-    }
-   stages {
-        stage('Build') {
-            steps {
-
-               snDevOpsStep()
-               //snDevOpsStep (enabled:true)
-
-               //snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
-               // snDevOpsStep (ignoreErrors:true) /* working 1.18 */
-               // snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
-               sh 'mvn -B -DskipTests clean compile'
-
-
-
-            }
-        }
-        stage('Test') { 
-            steps {
-               snDevOpsStep()
-
-                sh 'mvn test'
-
-            }
-            post {
-           		always {
-                 junit '**/target/surefire-reports/*.xml'
-            	} 
-            }
-
-        }
-
-	stage('Deploy') { 
-	            steps {
-	               snDevOpsStep()
-	               echo 'Deploying....'
-                	
-	               //snDevOpsChange()
-	               //sh 'mvn clean install package'
-
-	            }
-	            
-	        }
-	        
-	        stage('PublishArtifacts') { 
-	            steps {
-	               snDevOpsStep()
-	               echo 'Publishing Artifacts....'
-                	
-	               // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "First_repo"}]}""")
-
-					// snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "devops_pipeline_demo.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "First_repo"}],"stageName": "PublishArtifacts"}""")            
-
-					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "first_repo.jar","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "first_repo"}],"stageName": "PublishArtifacts"}""")            
-	               //snDevOpsArtifact(artifactsPayload: """{"artifacts":[{"name":"sa-web.jar","version":"3.1","semanticVersion":"3.1.0","repositoryName":"services-1031"}]}""")
-
-	            }
-	            
-	        }
-
-	        stage('PublishPackage') { 
-	            steps {
-	               snDevOpsStep()
-	               echo 'Publishing Package....'
-                	
-                	
-                	// New artifact reg call
-                //snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "sa-web.jar","version": "3.1","semanticVersion": "3.1.0","repositoryName": "services-1031"},{"name": "sa-frontend.jar","version": "3.2","semanticVersion": "3.2.0","repositoryName": "services-1031"}]}""")
-// New package create call
-                
-                snDevOpsPackage(name: "sentimentpackage", artifactsPayload: """{"artifacts": [{"name": "first_repo.jar","repositoryName": "first_repo","version": "${version}"},{"name": "sa-frontend.jar","repositoryName": "first_repo","version": "${version}"}],"branchName":"master"}""")
-                
-                // New package create style - 2 (with currentBuildInfo)
-                //snDevOpsPackage(name: "sentimentpackage", artifactsPayload: """{"artifacts": [{"name": "sa-web.jar","repositoryName": "services-1031","currentBuildInfo" : "true"},{"name": "sa-frontend.jar","repositoryName": "services-1031","currentBuildInfo" : "true"}],"branchName":"master"}""")
-                
-					// snDevOpsPackage(artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}""")
-						
-					//snDevOpsPackage(name: "balu_package",
-						//artifactsPayload: """{"artifacts":[{"name":"first_repo.jar","version":"${version}","repositoryName":"first_repo"}],"stageName":"PublishPackage","branchName":"master"}""")
-					
-					
-					//snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","pipelineName": "PublishArtifacts","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}]}""")
-	            }
-	            
-	        }
-      
-  }
+  agent any
+  tools {
+       maven 'Maven'
+   }
+  stages {
+       stage('Build') {
+           steps {
+              snDevOpsStep()
+              sh 'mvn -B -DskipTests clean compile'
+           }
+       }
+       stage('Test') {
+           steps {
+              snDevOpsStep()
+               sh 'mvn test'
+           }
+           post {
+                    always {
+                junit "**/target/surefire-reports/*.xml"
+             }
+           }
+       }
+      stage('Deploy') {
+                 steps {
+                    snDevOpsStep()
+                    echo 'Deploying....'
+                 }
+      }
+     stage('PublishArtifacts') {
+         steps {
+            snDevOpsStep()
+            echo 'Publishing Artifacts....'
+            snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "first_repo.jar","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "first_repo"}],"stageName": "PublishArtifacts"}""")           
+         }
+     }
+     stage('PublishPackage') {
+         steps {
+            snDevOpsStep()
+            echo 'Publishing Package....'
+            // format-1
+            snDevOpsPackage(name: "newPackage", artifactsPayload: """{"artifacts": [{"name": "first_repo.jar","repositoryName": "first_repo","version": "${version}"},{"name": "sa-frontend.jar","repositoryName": "services-1031","version": "9.2"}],"branchName":"master"}""")
+            //format-2
+            //snDevOpsPackage(name: "newPackage", artifactsPayload: """{"artifacts": [{"name": "sa-web.jar","repositoryName": "services-1031","currentBuildInfo" : "true"},{"name": "sa-frontend.jar","repositoryName": "services-1031","currentBuildInfo" : "true"}],"branchName":"master"}""")
+         }
+     }
+ }
 }
