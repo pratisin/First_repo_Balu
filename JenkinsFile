@@ -75,9 +75,22 @@ pipeline {
 	               snDevOpsStep ()
 	               echo 'Publishing Package....'
                 	sleep 3
-					snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}""")
-						//snDevOpsPackage(name: "balu_package",
+                	
+                	// New artifact reg call
+                //snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "sa-web.jar","version": "3.1","semanticVersion": "3.1.0","repositoryName": "services-1031"},{"name": "sa-frontend.jar","version": "3.2","semanticVersion": "3.2.0","repositoryName": "services-1031"}]}""")
+// New package create call
+                
+                snDevOpsPackage(name: "sentimentpackage", artifactsPayload: """{"artifacts": [{"name": "first_repo.jar","repositoryName": "first_repo","version": "${version}"},{"name": "sa-frontend.jar","repositoryName": "first_repo","version": "${version}"}],"branchName":"master"}""")
+                
+                // New package create style - 2 (with currentBuildInfo)
+                //snDevOpsPackage(name: "sentimentpackage", artifactsPayload: """{"artifacts": [{"name": "sa-web.jar","repositoryName": "services-1031","currentBuildInfo" : "true"},{"name": "sa-frontend.jar","repositoryName": "services-1031","currentBuildInfo" : "true"}],"branchName":"master"}""")
+                
+					// snDevOpsPackage(artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}""")
+						
+					//snDevOpsPackage(name: "balu_package",
 						//artifactsPayload: """{"artifacts":[{"name":"first_repo.jar","version":"${version}","repositoryName":"first_repo"}],"stageName":"PublishPackage","branchName":"master"}""")
+					
+					
 					//snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","pipelineName": "PublishArtifacts","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}]}""")
 	            }
 	            
