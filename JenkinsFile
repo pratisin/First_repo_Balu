@@ -39,12 +39,13 @@ pipeline {
             snDevOpsStep()
             echo 'Publishing Package....'
             // format-1
-            // snDevOpsPackage(name: "newPackage", artifactsPayload: """{"artifacts": [{"name": "first_repo.jar","repositoryName": "first_repo","version": "${version}"},{"name": "sa-frontend.jar","repositoryName": "services-1031","version": "9.2"}],"branchName":"master"}""")
+            snDevOpsPackage(name: "newPackage", artifactsPayload: """{"artifacts": [{"name": "first_repo.jar","repositoryName": "first_repo","version": "${version}"},{"name": "sa-frontend.jar","repositoryName": "services-1031","version": "9.2"}],"branchName":"master"}""")
+            
             //format-2
             //snDevOpsPackage(name: "newPackage", artifactsPayload: """{"artifacts": [{"name": "sa-web.jar","repositoryName": "services-1031","currentBuildInfo" : "true"},{"name": "sa-frontend.jar","repositoryName": "services-1031","currentBuildInfo" : "true"}],"branchName":"master"}""")
          
          	// format -3
-         	snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}""")
+         	//snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}""")
 
          	
          }
