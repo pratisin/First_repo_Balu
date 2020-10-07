@@ -3,53 +3,55 @@ pipeline {
    tools {
         maven 'Maven'
     }
-    
-    stage('Build1') {
-            stages {
-                stage("Build1.1") {
-                    steps {
-                        snDevOpsStep()
-                        echo 'Build1.1'
-                    }
-                }
-                stage("Build2") {
-                    stages {
-                        stage("Build3") {
-                            steps {
-                                snDevOpsStep()
-                                echo 'Build1.2.3'
-                            }
-                        }
-                        stage("Build4") {
-                            steps {
-                                snDevOpsStep()
-                                echo 'Build1.2.4'
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Test1') {
-            parallel {
-                stage('Test1.1') {
-                    steps {
-                         echo 'Test1.1'
-                    }
-                    post {
-                        success {
-                            echo 'Test1.1-success'
-                        }
-                    }
-                }
-                stage('Test1.2') {
-                    steps {
-                        snDevOpsStep()
-                        //snDevOpsChange()
-                            echo 'Test1.2'
-                    }
-                }
-            }
-        }
-   
+    stages {
+    	
+	    stage('Build1') {
+	            stages {
+	                stage("Build1.1") {
+	                    steps {
+	                        snDevOpsStep()
+	                        echo 'Build1.1'
+	                    }
+	                }
+	                stage("Build2") {
+	                    stages {
+	                        stage("Build3") {
+	                            steps {
+	                                snDevOpsStep()
+	                                echo 'Build1.2.3'
+	                            }
+	                        }
+	                        stage("Build4") {
+	                            steps {
+	                                snDevOpsStep()
+	                                echo 'Build1.2.4'
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	        stage('Test1') {
+	        
+	            parallel {
+	                stage('Test1.1') {
+	                    steps {
+	                         echo 'Test1.1'
+	                    }
+	                    post {
+	                        success {
+	                            echo 'Test1.1-success'
+	                        }
+	                    }
+	                }
+	                stage('Test1.2') {
+	                    steps {
+	                        snDevOpsStep()
+	                        //snDevOpsChange()
+	                            echo 'Test1.2'
+	                    }
+	                }
+	            }
+	        }
+   		}
 }
