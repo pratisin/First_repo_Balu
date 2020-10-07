@@ -4,49 +4,49 @@ pipeline {
         maven 'Maven'
     }
     
-    stage('Build') {
+    stage('Build1') {
             stages {
-                stage("Staging-Deploy") {
+                stage("Build1.1") {
                     steps {
                         snDevOpsStep()
-                        echo 'test'
+                        echo 'Build1.1'
                     }
                 }
-                stage("Send-Report") {
+                stage("Build2") {
                     stages {
-                        stage("Alert-If-Issues") {
+                        stage("Build3") {
                             steps {
                                 snDevOpsStep()
-                                echo 'test'
+                                echo 'Build1.2.3'
                             }
                         }
-                        stage("Conclude") {
+                        stage("Build4") {
                             steps {
                                 snDevOpsStep()
-                                echo 'test'
+                                echo 'Build1.2.4'
                             }
                         }
                     }
                 }
             }
         }
-        stage('Test') {
+        stage('Test1') {
             parallel {
-                stage('UAT test test1') {
+                stage('Test1.1') {
                     steps {
-                         echo 'test'
+                         echo 'Test1.1'
                     }
                     post {
                         success {
-                            echo 'test'
+                            echo 'Test1.1-success'
                         }
                     }
                 }
-                stage('UAT static code test') {
+                stage('Test1.2') {
                     steps {
                         snDevOpsStep()
-                        snDevOpsChange()
-                            echo 'test'
+                        //snDevOpsChange()
+                            echo 'Test1.2'
                     }
                 }
             }
