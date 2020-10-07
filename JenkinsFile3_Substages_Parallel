@@ -14,15 +14,15 @@ pipeline {
 	                        snDevOpsChange()
 	                    }
 	                }
-	                stage("Build2") {
+	                stage("Build1.2") {
 	                    stages {
-	                        stage("Build3") {
+	                        stage("Build1.2.3") {
 	                            steps {
 	                                snDevOpsStep()
 	                                echo 'Build1.2.3'
 	                            }
 	                        }
-	                        stage("Build4") {
+	                        stage("Build1.2.4") {
 	                            steps {
 	                                snDevOpsStep()
 	                                echo 'Build1.2.4'
