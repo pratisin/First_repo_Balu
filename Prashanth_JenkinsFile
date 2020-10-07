@@ -37,7 +37,7 @@ pipeline {
                 snDevOpsStep()
                 echo 'Packaging..'
                 snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-                snDevOpsChange()
+                //snDevOpsChange()
             }
         }
 		stage('UAT') {
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 snDevOpsStep()
                 echo 'Testing again..'
-				sh 'mvn -Dtest=com.integration.* clean test'
+				//sh 'mvn -Dtest=com.integration.* clean test'
             }
 			post {
        		    success {
