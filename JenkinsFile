@@ -14,25 +14,24 @@ pipeline {
         stage('Build') {
             steps {
 
-               snDevOpsStep ()
+               snDevOpsStep()
                //snDevOpsStep (enabled:true)
 
                //snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
                // snDevOpsStep (ignoreErrors:true) /* working 1.18 */
                // snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
                sh 'mvn -B -DskipTests clean compile'
-  
-				      sleep 10
+
 
 
             }
         }
         stage('Test') { 
             steps {
-               snDevOpsStep ()
+               snDevOpsStep()
 
                 sh 'mvn test'
-                sleep 10
+
             }
             post {
            		always {
@@ -44,9 +43,9 @@ pipeline {
 
 	stage('Deploy') { 
 	            steps {
-	               snDevOpsStep ()
+	               snDevOpsStep()
 	               echo 'Deploying....'
-                	sleep 3
+                	
 	               //snDevOpsChange()
 	               //sh 'mvn clean install package'
 
@@ -56,9 +55,9 @@ pipeline {
 	        
 	        stage('PublishArtifacts') { 
 	            steps {
-	               snDevOpsStep ()
+	               snDevOpsStep()
 	               echo 'Publishing Artifacts....'
-                	sleep 3
+                	
 	               // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "First_repo"}]}""")
 
 					// snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "devops_pipeline_demo.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "First_repo"}],"stageName": "PublishArtifacts"}""")            
@@ -72,9 +71,9 @@ pipeline {
 
 	        stage('PublishPackage') { 
 	            steps {
-	               snDevOpsStep ()
+	               snDevOpsStep()
 	               echo 'Publishing Package....'
-                	sleep 3
+                	
                 	
                 	// New artifact reg call
                 //snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "sa-web.jar","version": "3.1","semanticVersion": "3.1.0","repositoryName": "services-1031"},{"name": "sa-frontend.jar","version": "3.2","semanticVersion": "3.2.0","repositoryName": "services-1031"}]}""")
