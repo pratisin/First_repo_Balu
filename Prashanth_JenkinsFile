@@ -45,12 +45,13 @@ pipeline {
             agent any 
             steps {
                 snDevOpsStep()
-                echo 'Testing again..'
+                echo 'Testing UAT.......'
 				//sh 'mvn -Dtest=com.integration.* clean test'
             }
 			post {
        		    success {
-          		    junit '**/target/surefire-reports/*.xml'
+          		    // junit '**/target/surefire-reports/*.xml'
+          		    echo 'UAT Completed...'
 				}
         	}
         }
