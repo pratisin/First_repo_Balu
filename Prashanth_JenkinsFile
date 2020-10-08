@@ -57,7 +57,7 @@ pipeline {
 		stage('Deploy') {
             agent none
             steps {
-				//snDevOpsChange()
+				snDevOpsChange()
                 echo 'Deploying..'
             }
         }
