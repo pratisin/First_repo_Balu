@@ -32,7 +32,8 @@ pipeline {
       stage('Deploy') {
                  steps {
                     //snDevOpsStep()
-                    echo 'Deploying....'
+                    echo 'Deploying the change....'
+                    snDevOpsChange()
                  }
       }
 
