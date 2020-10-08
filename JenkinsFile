@@ -14,13 +14,13 @@ pipeline {
   stages {
        stage('Build') {
            steps {
-              snDevOpsStep()
+              //snDevOpsStep()
               sh 'mvn -B -DskipTests clean compile'
            }
        }
        stage('Test') {
            steps {
-              snDevOpsStep()
+              //snDevOpsStep()
                sh 'mvn test'
            }
            post {
@@ -31,7 +31,7 @@ pipeline {
        }
       stage('Deploy') {
                  steps {
-                    snDevOpsStep()
+                    //snDevOpsStep()
                     echo 'Deploying....'
                  }
       }
