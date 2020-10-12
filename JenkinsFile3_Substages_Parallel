@@ -11,7 +11,7 @@ pipeline {
 	                    steps {
 	                        snDevOpsStep()
 	                        echo 'Build1.1'
-	                        //snDevOpsChange()
+	                        snDevOpsChange()
 	                    }
 	                }
 	                stage("Build1.2") {
