@@ -16,6 +16,7 @@ pipeline {
            steps {
               //snDevOpsStep()
               sh 'mvn -B -DskipTests clean compile'
+              // test commits-workitems
            }
        }
        stage('Test') {
