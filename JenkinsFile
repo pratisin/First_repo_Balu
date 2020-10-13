@@ -48,7 +48,7 @@ pipeline {
 
 					// snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "devops_pipeline_demo.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "First_repo"}],"stageName": "PublishArtifacts"}""")            
 
-					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactname}","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "${repoName}"}],"stageName": "PublishArtifacts"}""")            
+					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactname}-${env.BUILD_NUMBER}","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "${repoName}"}],"stageName": "PublishArtifacts"}""")            
 	               //snDevOpsArtifact(artifactsPayload: """{"artifacts":[{"name":"sa-web.jar","version":"3.1","semanticVersion":"3.1.0","repositoryName":"services-1031"}]}""")
 
 	            }
