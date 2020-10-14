@@ -12,7 +12,7 @@ pipeline {
             steps {
                 snDevOpsStep()
                 echo 'Building..'
-                checkout scm
+                // checkout scm
                 sh 'mvn --version'
                 //sh 'mvn clean install -DskipTests'
                 snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
