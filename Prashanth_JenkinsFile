@@ -23,7 +23,7 @@ pipeline {
             steps {
                 snDevOpsStep()
                 echo 'Testing..'
-                //sh 'mvn test'
+                sh 'mvn test'
             }
 			post {
        		   always {
@@ -58,6 +58,7 @@ pipeline {
 		stage('Deploy') {
             agent none
             steps {
+            	snDevOpsStep()
 				snDevOpsChange()
                 echo 'Deploying..'
             }
