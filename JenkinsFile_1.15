@@ -51,6 +51,7 @@ pipeline {
 
 					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactname}-${env.BUILD_NUMBER}","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "${repoName}"}],"stageName": "PublishArtifacts"}""")            
 	               //snDevOpsArtifact(artifactsPayload: """{"artifacts":[{"name":"sa-web.jar","version":"3.1","semanticVersion":"3.1.0","repositoryName":"services-1031"}]}""")
+                	snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
 					
 	            }
 	            
@@ -71,7 +72,9 @@ pipeline {
 
          	// format-4
          	snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-         	sh 'sleep 100'
+         	sh 'sleep 10'
+         	snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
+ 
          }
  	}
  }
