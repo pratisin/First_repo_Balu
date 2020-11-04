@@ -11,7 +11,7 @@ pipeline {
 	                    steps {
 	                        snDevOpsStep()
 	                        echo 'Build1.1'
-	                        //snDevOpsChange()
+	                        snDevOpsChange()
 	                    }
 	                }
 	                stage("Build1.2") {
@@ -26,7 +26,8 @@ pipeline {
 	                            steps {
 	                                snDevOpsStep()
 	                                echo 'Build1.2.4'
-	                                //snDevOpsChange()
+	                                snDevOpsChange()
+	                                sh 'sleep 100'
 	                            }
 	                        }
 	                    }
@@ -51,8 +52,9 @@ pipeline {
 	                stage('Test1.2') {
 	                    steps {
 	                        snDevOpsStep()
-	                        //snDevOpsChange()
-	                            echo 'Test1.2'
+	                        snDevOpsChange()
+	                        echo 'Test1.2'
+	                        sh 'sleep 100'
 	                    }
 	                    post {
 	                        success {
