@@ -40,22 +40,22 @@ pipeline {
 
      stage('PublishArtifacts') { 
 	            steps {
-	               //snDevOpsStep ()
+	               snDevOpsStep (stepSysId:'47828d591b9c60106951da86cc4bcbfa', ignoreErrors:true)
+	               
 	               snDevOpsChange()
 	               echo 'Publishing Artifacts....'
                 	sleep 3
 					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactname}-${env.BUILD_NUMBER}","semanticVersion": "${semanticVersion}","repositoryName": "${repoName}"}],"stageName": "PublishArtifacts"}""")            
-
 	            }
 	            
 	        }
 
 		stage('PublishPackage') {
          steps {
-            snDevOpsStep()
+            snDevOpsStep (stepSysId:'5b9281591b9c60106951da86cc4bcbfe', ignoreErrors:true)
             echo 'Publishing Package....'
- 
          	snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
+        
          }
  	}
  }
