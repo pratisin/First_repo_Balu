@@ -35,14 +35,14 @@ pipeline {
                  steps {
                     snDevOpsStep()
                     echo 'Deploying the change....'
-                    snDevOpsChange()
+                    
                  }
       }
 
      stage('PublishArtifacts') { 
 	            steps {
 	               snDevOpsStep()
-	               
+	               snDevOpsChange()
 	               echo 'Publishing Artifacts....'
                 	sleep(time:65,unit:"SECONDS")
 	               // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "First_repo"}]}""")
