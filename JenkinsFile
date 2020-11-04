@@ -14,25 +14,25 @@ pipeline {
   stages {
        stage('Build') {
            steps {
-              //snDevOpsStep()
+              snDevOpsStep()
               sh 'mvn -B -DskipTests clean compile'
-              // test commits-workitems
+
            }
        }
        stage('Test') {
            steps {
-              //snDevOpsStep()
-               sh 'mvn test'
+              snDevOpsStep()
+              sh 'mvn test'
            }
            post {
-                    always {
+             always {
                 junit "**/target/surefire-reports/*.xml"
              }
            }
        }
       stage('Deploy') {
                  steps {
-                    //snDevOpsStep()
+                    snDevOpsStep()
                     echo 'Deploying the change....'
                     snDevOpsChange()
                  }
@@ -44,12 +44,7 @@ pipeline {
 	               snDevOpsChange()
 	               echo 'Publishing Artifacts....'
                 	sleep 3
-	               // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "First_repo"}]}""")
-
-					// snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "devops_pipeline_demo.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "First_repo"}],"stageName": "PublishArtifacts"}""")            
-
-					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactname}-${env.BUILD_NUMBER}","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "${repoName}"}],"stageName": "PublishArtifacts"}""")            
-	               //snDevOpsArtifact(artifactsPayload: """{"artifacts":[{"name":"sa-web.jar","version":"3.1","semanticVersion":"3.1.0","repositoryName":"services-1031"}]}""")
+					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactname}-${env.BUILD_NUMBER}","semanticVersion": "${semanticVersion}","repositoryName": "${repoName}"}],"stageName": "PublishArtifacts"}""")            
 
 	            }
 	            
@@ -59,17 +54,8 @@ pipeline {
          steps {
             snDevOpsStep()
             echo 'Publishing Package....'
-            // format-1
-            //snDevOpsPackage(name: "newPackage", artifactsPayload: """{"artifacts": [{"name": "first_repo.jar","repositoryName": "first_repo","version": "${version}"},{"name": "sa-frontend.jar","repositoryName": "services-1031","version": "9.2"}],"branchName":"master"}""")
-            
-            //format-2
-            //snDevOpsPackage(name: "newPackage", artifactsPayload: """{"artifacts": [{"name": "sa-web.jar","repositoryName": "services-1031","currentBuildInfo" : "true"},{"name": "sa-frontend.jar","repositoryName": "services-1031","currentBuildInfo" : "true"}],"branchName":"master"}""")
-         
-         	// format -3
-         	//snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}""")
-
-         	// format-4
-         	snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
+ 
+         	snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
          }
  	}
  }
