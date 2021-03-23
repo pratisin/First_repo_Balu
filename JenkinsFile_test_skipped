@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+    stages {
+        stage('Stage 1') {
+            when {
+                equals expected: 2, actual: 2
+            }
+            steps {
+                snDevOpsChange()
+                echo 'Executing stage 1'
+                //sh 'fail'
+                sleep 5
+            }
+        }
+        stage('Stage 2') {
+            when {
+                equals expected: 2, actual: 1
+            }
+            steps {
+                echo 'Executing stage 3'
+               // sh 'fail'
+                snDevOpsChange()
+                sleep 5
+            }
+        }
+
+        stage('Stage 3') {
+            when {
+                equals expected: 2, actual: 1
+            }
+            steps {
+                // snDevOpsChange()
+                //sh 'fail'
+                echo 'Executing stage 3'
+                sleep 5
+            }
+        }
+        stage('Stage 4') {
+            when {
+                equals expected: 2, actual: 1
+            }
+            steps {
+                snDevOpsChange()
+                //sh 'fail'
+                echo 'Executing stage 4'
+                sleep 5
+            }
+        }
+
+    }
+}
