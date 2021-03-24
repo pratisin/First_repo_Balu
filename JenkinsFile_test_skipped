@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Stage 4') {
             when {
-                //equals expected: 2, actual: 3
+                equals expected: 2, actual: 2
                 
             }
             steps {
