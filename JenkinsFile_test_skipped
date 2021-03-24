@@ -38,11 +38,11 @@ pipeline {
         stage('Stage 4') {
             when {
                 //equals expected: 2, actual: 3
-                sh 'false'
+                
             }
             steps {
-                snDevOpsChange()
- 
+                //snDevOpsChange()
+ 				//sh 'false'
                 error("Build failed because of this and that..")
                 echo 'Executing stage 4'
                 sleep 5
