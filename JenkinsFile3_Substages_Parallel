@@ -1,0 +1,68 @@
+pipeline {
+   agent any
+   tools {
+        maven 'Maven'
+    }
+    stages {
+    	
+	    stage('Build1') {
+	            stages {
+	                stage("Build1.1") {
+	                    steps {
+	                        snDevOpsStep()
+	                        echo 'Build1.1'
+	                        snDevOpsChange()
+	                    }
+	                }
+	                stage("Build1.2") {
+	                    stages {
+	                        stage("Build1.2.3") {
+	                            steps {
+	                                snDevOpsStep()
+	                                echo 'Build1.2.3'
+	                            }
+	                        }
+	                        stage("Build1.2.4") {
+	                            steps {
+	                                snDevOpsStep()
+	                                echo 'Build1.2.4'
+	                                snDevOpsChange()
+	                                sh 'sleep 100'
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	        stage('Test1') {
+	        
+	            parallel {
+	                stage('Test1.1') {
+	                    steps {
+	                    	snDevOpsStep()
+	                         echo 'Test1.1'
+	                         snDevOpsChange()
+	                    }
+	                    post {
+	                        success {
+	                            echo 'Test1.1-success'
+	                        }
+	                    }
+	                }
+	                stage('Test1.2') {
+	                    steps {
+	                        snDevOpsStep()
+	                        snDevOpsChange()
+	                        echo 'Test1.2'
+	                        sh 'sleep 100'
+	                    }
+	                    post {
+	                        success {
+	                            echo 'Test1.2-success'
+	                        }
+	                    }
+	                }
+	            }
+	        }
+   		}
+}

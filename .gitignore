@@ -1,4 +1,7 @@
 /target/
 /test-output/
 /bin/
+<<<<<<< HEAD
 /.classpath
+=======
+>>>>>>> 854a779545ab4d43d581a035f6a4b12e8fe7bcb5

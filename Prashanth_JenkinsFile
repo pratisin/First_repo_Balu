@@ -1,0 +1,67 @@
+def artifactname = "sp-boot-app"
+def repoName = "sp-boot-app-repo"
+def pkgName = "sp-boot-package"
+pipeline {
+    agent none
+	tools {
+		maven 'Maven'
+	}
+    stages {
+        stage('Build') {
+            agent any 
+            steps {
+                snDevOpsStep()
+                echo 'Building..'
+                // checkout scm
+                sh 'mvn --version'
+                //sh 'mvn clean install -DskipTests'
+                snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
+            }
+        }
+        stage('Test') {
+            agent any 
+            steps {
+                snDevOpsStep()
+                echo 'Testing..'
+                sh 'mvn test'
+            }
+			post {
+       		   always {
+          		    //junit '**/target/surefire-reports/*.xml'
+          		    echo 'Testing complete'
+			  }
+        	}
+        }
+		stage('package') { 
+            agent any 
+            steps {
+                snDevOpsStep()
+                echo 'Packaging..'
+                snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
+                snDevOpsChange()
+            }
+        }
+		stage('UAT') {
+            agent any 
+            steps {
+                snDevOpsStep()
+                echo 'Testing UAT.......'
+				//sh 'mvn -Dtest=com.integration.* clean test'
+            }
+			post {
+       		    success {
+          		    // junit '**/target/surefire-reports/*.xml'
+          		    echo 'UAT Completed...'
+				}
+        	}
+        }
+		stage('Deploy') {
+            agent none
+            steps {
+            	snDevOpsStep()
+				snDevOpsChange()
+                echo 'Deploying..'
+            }
+        }
+    }
+}
