@@ -62,7 +62,7 @@ pipeline {
 		stage('PublishPackage') {
          steps {
             snDevOpsStep()
-	    snDevOpsChange()
+	    	snDevOpsChange()
             echo 'Publishing Package....'
             // format-1
             //snDevOpsPackage(name: "newPackage", artifactsPayload: """{"artifacts": [{"name": "first_repo.jar","repositoryName": "first_repo","version": "${version}"},{"name": "sa-frontend.jar","repositoryName": "services-1031","version": "9.2"}],"branchName":"master"}""")
