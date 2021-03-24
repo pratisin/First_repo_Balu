@@ -41,7 +41,7 @@ pipeline {
             }
             steps {
                 snDevOpsChange()
-                //sh 'fail'
+                sh 'fail'
                 echo 'Executing stage 4'
                 sleep 5
             }
