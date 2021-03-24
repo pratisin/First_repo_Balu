@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Stage 2') {
             when {
-                equals expected: 2, actual: 2
+                equals expected: 2, actual: 1
             }
             steps {
                 echo 'Executing stage 2'
