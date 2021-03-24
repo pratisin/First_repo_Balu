@@ -41,7 +41,8 @@ pipeline {
             }
             steps {
                 snDevOpsChange()
-                sh 'fail'
+                sh 'false'
+                error("Build failed because of this and that..")
                 echo 'Executing stage 4'
                 sleep 5
             }
