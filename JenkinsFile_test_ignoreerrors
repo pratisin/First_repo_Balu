@@ -14,14 +14,14 @@ pipeline {
   stages {
        stage('Build') {
            steps {
-              //snDevOpsStep()
+              snDevOpsStep()
               //sh 'mvn -B -DskipTests clean compile'
 
            }
        }
        stage('Test') {
            steps {
-              //snDevOpsStep()
+              snDevOpsStep()
               sh 'mvn test'
            }
            post {
@@ -32,7 +32,7 @@ pipeline {
        }
       stage('Deploy') {
                  steps {
-                    //snDevOpsStep()
+                    snDevOpsStep()
                     echo 'Deploying the change....'
                     snDevOpsChange()
                     //snDevOpsChange(ignoreErrors: true)
@@ -42,7 +42,7 @@ pipeline {
 
      stage('PublishArtifacts') { 
 	            steps {
-	            	//snDevOpsStep (enabled:true)
+	            	snDevOpsStep (enabled:true)
 	               //snDevOpsStep (stepSysId:'47828d591b9c60106951da86cc4bcbfa', ignoreErrors:true)
 	               
 	               snDevOpsChange()
@@ -57,7 +57,7 @@ pipeline {
 
 		stage('PublishPackage') {
          steps {
-         	//snDevOpsStep (enabled:true)
+         	snDevOpsStep (enabled:true)
             //snDevOpsStep (stepSysId:'5b9281591b9c60106951da86cc4bcbfe', ignoreErrors:true)
             echo 'Publishing Package....'
          	//snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
