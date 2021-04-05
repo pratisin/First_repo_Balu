@@ -19,3 +19,4 @@ BALU-10:#TEST 1.26 Defect DEF0196325 - test 1.25 Upgraded to 1.26
 BALU-10:#TEST 1.26 Defect DEF0196325 - test 1.25 Upgraded to 1.26- Test FREESTYLE
 BALU-10:#TEST 1.26 Defect DEF0196325 - test 1.25 Upgraded to 1.26- second time
 BALU-10:#TEST 1.26 Defect DEF0196325 - test 1.25 Upgraded to 1.26- third time, set bulkcommitprocessing as false
+BALU-10:#TEST 1.26 Defect DEF0196325 - test 1.25 Upgraded to 1.26- third time, set bulkcommitprocessing as false444
