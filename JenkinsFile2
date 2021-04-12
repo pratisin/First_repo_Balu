@@ -14,20 +14,17 @@ pipeline {
         }
         
 	stage('Deploy') {
-                 steps {
-					when {
-			                equals expected: 2, actual: 2
-			                
-			            }
-			            steps {
-			                //snDevOpsChange()
+			when {
+                equals expected: 2, actual: 2
+                
+            }
+            steps {
+                //snDevOpsChange()
 
-			                error("Build failed because of this and that..")
-			                echo 'Executing stage 4'
+                error("Build failed because of this and that..")
+                echo 'Executing stage 4'
 
-			            }
-                    
-                 }
+            }
       }
       
   }
