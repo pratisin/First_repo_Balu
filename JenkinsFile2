@@ -21,7 +21,7 @@ pipeline {
             steps {
                 //snDevOpsChange()
 
-                error("Build failed because of this and that..")
+                //error("Build failed because of this and that..")
                 echo 'Executing stage 4'
 
             }
