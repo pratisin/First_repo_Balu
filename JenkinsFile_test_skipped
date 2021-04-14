@@ -9,7 +9,7 @@ pipeline {
                 snDevOpsChange()
                 echo 'Executing stage 1'
                 //sh 'fail'
-                sleep 5
+                sleep 1
             }
         }
         stage('Stage 2') {
@@ -18,9 +18,9 @@ pipeline {
             }
             steps {
                 echo 'Executing stage 2'
-               // sh 'fail'
+                // sh 'fail'
                 snDevOpsChange()
-                sleep 5
+                sleep 1
             }
         }
 
@@ -29,23 +29,22 @@ pipeline {
                 equals expected: 2, actual: 3
             }
             steps {
-                // snDevOpsChange()
-                //sh 'fail'
+                snDevOpsChange()
                 echo 'Executing stage 3'
-                sleep 5
+                sleep 1
             }
         }
         stage('Stage 4') {
             when {
-                equals expected: 2, actual: 2
+                equals expected: 2, actual: 3
                 
             }
             steps {
                 //snDevOpsChange()
  				//sh 'false'
-                error("Build failed because of this and that..")
-                echo 'Executing stage 4'
-                sleep 5
+                error("Stage 4: failed , testing pipeline UI")
+
+                sleep 1
             }
         }
 
