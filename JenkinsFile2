@@ -18,7 +18,6 @@ pipeline {
             steps {
                 //snDevOpsChange()
 				snDevOpsStep ()
-                //error("Build failed because of this and that..")
                 echo 'Executing deploy'
 
             }
