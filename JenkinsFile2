@@ -19,6 +19,7 @@ pipeline {
                 //snDevOpsChange()
 				snDevOpsStep ()
                 echo 'Executing deploy'
+                
 
             }
       }
