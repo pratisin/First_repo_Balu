@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Stage 2') {
             when {
-                equals expected: 2, actual: 2
+                equals expected: 2, actual: 3
             }
             steps {
                 echo 'Executing stage 2'
@@ -39,7 +39,7 @@ pipeline {
                 //snDevOpsChange()
  				//sh 'false'
                 //error("Build failed because of this and that..")
-                echo 'Executing stage 4'
+                echo 'Executing stage 3'
                 
             }
         }
