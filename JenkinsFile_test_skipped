@@ -6,10 +6,10 @@ pipeline {
                 equals expected: 2, actual: 2
             }
             steps {
-                snDevOpsChange()
+                //snDevOpsChange()
                 echo 'Executing stage 1'
                 //sh 'fail'
-                error("Build failed because of this and that..")
+                //error("Build failed because of this and that..")
                 
             }
         }
@@ -20,8 +20,8 @@ pipeline {
             steps {
                 echo 'Executing stage 2'
                // sh 'fail'
-                snDevOpsChange()
-                error("Build failed because of this and that..")
+                //snDevOpsChange()
+                //error("Build failed because of this and that..")
             }
         }
 
