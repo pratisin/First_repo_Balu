@@ -23,7 +23,7 @@ pipeline {
                // sh 'fail'
                 //snDevOpsChange()
                 sleep 5
-                error("Build failed because of this and that..")
+                //error("Build failed because of this and that..")
             }
         }
 
