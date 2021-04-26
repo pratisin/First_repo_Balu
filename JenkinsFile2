@@ -13,16 +13,7 @@ pipeline {
             }
         }
         
-		stage('Deploy') {
-
-            steps {
-                //snDevOpsChange()
-				snDevOpsStep ()
-                echo 'Executing deploy'
-                
-
-            }
-      }
+	
       
   }
 }
