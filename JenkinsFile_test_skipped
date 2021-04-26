@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Stage 1') {
             when {
-                equals expected: 2, actual: 2
+                equals expected: 2, actual: 3
             }
             steps {
             	sleep 5
@@ -16,14 +16,14 @@ pipeline {
         }
         stage('Stage 2') {
             when {
-                equals expected: 2, actual: 2
+                equals expected: 2, actual: 3
             }
             steps {
                 echo 'Executing stage 2'
                // sh 'fail'
                 //snDevOpsChange()
                 sleep 5
-                error("Build failed because of this and that..")
+                //error("Build failed because of this and that..")
             }
         }
 
