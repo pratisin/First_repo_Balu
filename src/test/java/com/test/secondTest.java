@@ -39,8 +39,8 @@ public class secondTest {
 //		assertFalse(true, "test is failed");
 //	}
 
-	@Test
-	public void testskipped() {
-		throw new SkipException("skipped");
-	}
+//	@Test
+//	public void testskipped() {
+//		throw new SkipException("skipped");
+//	}
 }
