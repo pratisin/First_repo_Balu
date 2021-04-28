@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Stage 1') {
+            when {
+                equals expected: 2, actual: 3
+            }
+            steps {
+            	sleep 5
+                //snDevOpsChange()
+                echo 'Executing stage 1'
+                //sh 'fail'
+                //error("Build failed because of this and that..")
+                
+            }
+        }
+        
+
+    }
+}
