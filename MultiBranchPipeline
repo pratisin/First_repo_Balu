@@ -41,6 +41,7 @@ pipeline {
             steps {
                 echo '*******Executing pipeline in dev*******************'
                 snDevOpsStep (ignoreErrors:true)
+                snDevOpsChange()
             }
         }
         stage('Deliver2Feature1') {
@@ -49,17 +50,17 @@ pipeline {
             }
             steps {
                 echo '*******Executing pipeline in feature1******************'
-                snDevOpsStep (ignoreErrors:true)
+               snDevOpsChange()
             }
         }
         
         stage('Deliver2Patch-1') {
             when {
-                branch 'Patch-1' 
+                branch 'patch-1' 
             }
             steps {
                 echo '*******Executing pipeline in Patch-1 ********************'
-                snDevOpsStep (ignoreErrors:true)
+                snDevOpsChange()
             }
         }
       

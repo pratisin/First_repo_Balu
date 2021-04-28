@@ -4,84 +4,65 @@ def pipelineName = "devops_vk_pipeline"
 def semanticVersion = "${env.BUILD_NUMBER}.0.0"
 def packageName = "spboot-package_${env.BUILD_NUMBER}"
 def version = "${env.BUILD_NUMBER}.0"
+def pkgName = "sp-boot-package"
+
 pipeline {
-   agent any
-   tools {
-        maven 'Maven'
+  agent any
+  tools {
+       maven 'Maven'
+   }
+  stages {
+       stage('Build') {
+           steps {
+              snDevOpsStep()
+              sh 'mvn -B -DskipTests clean compile'
 
-    }
-   stages {
-        stage('Build') {
-            steps {
+           }
+       }
+       stage('Test') {
+           steps {
+              snDevOpsStep()
+              sh 'mvn test'
+           }
+           post {
+             always {
+                junit "**/target/surefire-reports/*.xml"
+             }
+           }
+       }
+      stage('Deploy') {
+                 steps {
+                    snDevOpsStep()
+                    echo 'Deploying the change....'
+                    snDevOpsChange()
+                 }
+      }
 
-               snDevOpsStep ()
-               //snDevOpsStep (enabled:true)
-
-               //snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
-               // snDevOpsStep (ignoreErrors:true) /* working 1.18 */
-               // snDevOpsStep (stepSysId:'b075606b1b671410f23cdb9cdc4bcb2e', ignoreErrors:true)
-               sh 'mvn -B -DskipTests clean compile'
-  
-				      sleep 10
-
-
-            }
-        }
-        stage('Test') { 
-            steps {
-               snDevOpsStep ()
-
-                sh 'mvn test'
-                sleep 10
-            }
-            post {
-           		always {
-                 junit '**/target/surefire-reports/*.xml'
-            	} 
-            }
-
-        }
-
-	stage('Deploy') { 
+     stage('PublishArtifacts') { 
 	            steps {
-	               snDevOpsStep ()
-	               echo 'Deploying....'
-                	sleep 3
-	               //snDevOpsChange()
-	               //sh 'mvn clean install package'
-
-	            }
-	            
-	        }
-	        
-	        stage('PublishArtifacts') { 
-	            steps {
-	               snDevOpsStep ()
+	            	snDevOpsStep (enabled:true)
+	               //snDevOpsStep (stepSysId:'47828d591b9c60106951da86cc4bcbfa', ignoreErrors:true)
+	               
+	               snDevOpsChange()
 	               echo 'Publishing Artifacts....'
                 	sleep 3
-	               // snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sa-web-ui.jar","version":"${artifactVersion}","semanticVersion": "${artifactSemVersion}","repositoryName": "First_repo"}]}""")
-
-					// snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "devops_pipeline_demo.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "First_repo"}],"stageName": "PublishArtifacts"}""")            
-
-					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "first_repo.jar","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "first_repo"}],"stageName": "PublishArtifacts"}""")            
-	               //snDevOpsArtifact(artifactsPayload: """{"artifacts":[{"name":"sa-web.jar","version":"3.1","semanticVersion":"3.1.0","repositoryName":"services-1031"}]}""")
-
+					//snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactname}-${env.BUILD_NUMBER}","semanticVersion": "${semanticVersion}","repositoryName": "${repoName}"}],"stageName": "PublishArtifacts"}""")            
+	                snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
+	           
 	            }
 	            
 	        }
 
-	        stage('PublishPackage') { 
-	            steps {
-	               snDevOpsStep ()
-	               echo 'Publishing Package....'
-                	sleep 3
-					snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","version":${version}}],"pipelineName": "balu_pipeline","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}""")
-						//snDevOpsPackage(name: "balu_package",
-						//artifactsPayload: """{"artifacts":[{"name":"first_repo.jar","version":"${version}","repositoryName":"first_repo"}],"stageName":"PublishPackage","branchName":"master"}""")
-					//snDevOpsPackage(name: "balu-package", artifactsPayload: """{"artifacts": [{"name": "First_repo.jar","repositoryName": "First_repo","pipelineName": "PublishArtifacts","taskExecutionNumber":"30","stageName":"PublishPackage","branchName": "master"}]}""")
-	            }
-	            
-	        }
-      
-  }
+		stage('PublishPackage') {
+         steps {
+         	snDevOpsStep (enabled:true)
+            //snDevOpsStep (stepSysId:'5b9281591b9c60106951da86cc4bcbfe', ignoreErrors:true)
+            echo 'Publishing Package....'
+         	//snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
+            snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
+        
+         }
+ 	}
+ }
+ 
 }
