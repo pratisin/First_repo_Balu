@@ -52,6 +52,7 @@
 		<maven.build.helper.version>3.0.0</maven.build.helper.version>
 		<jetty.version>9.4.11.v20180605</jetty.version>
 		<jersey.version>2.27</jersey.version>
+		<java.version>11</java.version>
 		
 		<sonar.projectKey>balu-sn-devops_First_repo</sonar.projectKey>
 		<sonar.organization>balu-sn-devops</sonar.organization>
@@ -68,8 +69,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
-					<source>${jdk.level}</source>
-					<target>${jdk.level}</target>
+					<maven.compiler.source>${java.version}</maven.compiler.source>
+					<maven.compiler.target>${java.version}</maven.compiler.target>
 				</configuration>
 			</plugin>
 			<plugin>
