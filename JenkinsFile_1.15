@@ -29,7 +29,7 @@ pipeline {
               snDevOpsStep()
                sh 'mvn test'
                
-               withSonarQubeEnv('SonarQube_Cloud') {
+               withSonarQubeEnv('Sonar_Cloud') {
 			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
 		       
         		}
