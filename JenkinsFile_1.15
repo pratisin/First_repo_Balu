@@ -21,9 +21,18 @@ pipeline {
            }
        }
        stage('Test') {
+       
+	       environment {
+	    		 SCANNER_HOME = tool 'sonarScanner'
+	  		}
            steps {
               snDevOpsStep()
                sh 'mvn test'
+               
+               withSonarQubeEnv('SonarQube_Cloud') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
+		       
+        		}
 	       
            }
            post {
