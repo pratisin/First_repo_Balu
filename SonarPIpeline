@@ -7,7 +7,28 @@ pipeline {
    }
   stages {
 
-       stage('SonarCloudScan') {
+       stage('SonarCloudScan1') {
+       
+	       environment {
+	    		 SCANNER_HOME = tool 'sonarScanner'
+	  		}
+           steps {
+              snDevOpsStep()
+
+               withSonarQubeEnv('Sonar_Cloud') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+		       
+        		}
+	       
+           }
+           post {
+               always {
+                junit "**/target/surefire-reports/*.xml"
+             	}
+           }
+       }
+ 	},
+ 	stage('SonarCloudScan2') {
        
 	       environment {
 	    		 SCANNER_HOME = tool 'sonarScanner'
