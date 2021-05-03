@@ -12,10 +12,19 @@ pipeline {
             }
         }
         stage('Test') { 
-            steps {
-               snDevOpsStep (ignoreErrors:true)
-                sh 'mvn test'
-            }
+           	environment {
+	    		 SCANNER_HOME = tool 'sonarScanner'
+	  		}
+           steps {
+              snDevOpsStep()
+               sh 'mvn test'
+               
+               withSonarQubeEnv('Sonar_Cloud') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+		       
+        		}
+	       
+           }
             post {
                 success {
                     junit 'target/surefire-reports/*.xml' 
@@ -38,30 +47,56 @@ pipeline {
             when {
                 branch 'dev' 
             }
-            steps {
-                echo '*******Executing pipeline in dev*******************'
-                snDevOpsStep (ignoreErrors:true)
-                snDevOpsChange()
-            }
+            environment {
+	    		 SCANNER_HOME = tool 'sonarScanner'
+	  		}
+           steps {
+              snDevOpsStep()
+              //snDevOpsChange()
+               
+               withSonarQubeEnv('Sonar_Cloud') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+		       
+        		}
+	       
+           }
         }
         stage('Deliver2Feature1') {
             when {
                 branch 'feature1' 
             }
-            steps {
-                echo '*******Executing pipeline in feature1******************'
-               snDevOpsChange()
-            }
+            environment {
+	    		 SCANNER_HOME = tool 'sonarScanner'
+	  		}
+           steps {
+              snDevOpsStep()
+              //snDevOpsChange()
+               
+               withSonarQubeEnv('Sonar_Cloud') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+		       
+        		}
+	       
+           }
         }
         
         stage('Deliver2Patch-1') {
             when {
                 branch 'patch-1' 
             }
-            steps {
-                echo '*******Executing pipeline in Patch-1 ********************'
-                snDevOpsChange()
-            }
+            environment {
+	    		 SCANNER_HOME = tool 'sonarScanner'
+	  		}
+           steps {
+              snDevOpsStep()
+              //snDevOpsChange()
+               
+               withSonarQubeEnv('Sonar_Cloud') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+		       
+        		}
+	       
+           }
         }
       
       
