@@ -21,11 +21,7 @@ pipeline {
         		}
 	       
            }
-           post {
-               always {
-                junit "**/target/surefire-reports/*.xml"
-             	}
-           }
+           
        }
  	
  	stage('SonarCloudScan2') {
@@ -42,11 +38,7 @@ pipeline {
         		}
 	       
            }
-           post {
-               always {
-                junit "**/target/surefire-reports/*.xml"
-             	}
-           }
+           
        }
  	}
 }
