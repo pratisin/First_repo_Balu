@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.test</groupId>
-	<artifactId>Sample</artifactId>
+	<artifactId>First_repo</artifactId>
 
 	<dependencies>
 		<dependency>
@@ -34,6 +34,12 @@
 			<version>7.1.0</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+		<dependency>
+		    <groupId>org.sonarsource.scanner.maven</groupId>
+		    <artifactId>sonar-maven-plugin</artifactId>
+		    <version>3.8.0.2131</version>
+		</dependency>
 
 	</dependencies>
 	<properties>
@@ -46,25 +52,45 @@
 		<maven.build.helper.version>3.0.0</maven.build.helper.version>
 		<jetty.version>9.4.11.v20180605</jetty.version>
 		<jersey.version>2.27</jersey.version>
+		<java.version>11</java.version>
 		
 		<sonar.projectKey>balu-sn-devops_First_repo</sonar.projectKey>
 		<sonar.organization>balu-sn-devops</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		
+	  <sonar.projectKey>devops-2022_sonar-scanning-examples</sonar.projectKey>
+	  <sonar.organization>devops-2022</sonar.organization>
+	  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  
+		<sonar.projectKey>devops-2022_sonar-scanner-maven</sonar.projectKey>
+		<sonar.organization>devops-2022</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		
 	</properties>
 
 	<version>0.0.1-SNAPSHOT</version>
 
 	<build>
 		<plugins>
+		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>3.8.1</version>
 				<configuration>
-					<source>${jdk.level}</source>
-					<target>${jdk.level}</target>
+					<maven.compiler.source>1.8</maven.compiler.source>
+					<maven.compiler.target>1.8</maven.compiler.target>
 				</configuration>
 			</plugin>
+			<plugin>
+			     <groupId>org.sonarsource.scanner.maven</groupId>
+			     <artifactId>sonar-maven-plugin</artifactId>
+			
+			     <configuration>
+			       <goalPrefix>sonar</goalPrefix>
+			     </configuration>
+			
+			 </plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
