@@ -29,7 +29,7 @@ public class secondTest {
 	public void test2() {
 
 		for (int i = 0; i < 200; i++)
-			System.out.println("testing jenkins....");
+			System.out.print("test summaries....");
 
 		Assert.assertTrue(true, "test is passed");
 	}
