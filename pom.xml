@@ -57,6 +57,15 @@
 		<sonar.projectKey>balu-sn-devops_First_repo</sonar.projectKey>
 		<sonar.organization>balu-sn-devops</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		
+	  <sonar.projectKey>devops-2022_sonar-scanning-examples</sonar.projectKey>
+	  <sonar.organization>devops-2022</sonar.organization>
+	  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  
+		<sonar.projectKey>devops-2022_sonar-scanner-maven</sonar.projectKey>
+		<sonar.organization>devops-2022</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		
 	</properties>
 
 	<version>0.0.1-SNAPSHOT</version>
