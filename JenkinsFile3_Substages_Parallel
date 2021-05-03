@@ -8,19 +8,38 @@ pipeline {
 	    stage('Build1') {
 	            stages {
 	                stage("Build1.1") {
-	                    steps {
-	                        snDevOpsStep()
-	                        echo 'Build1.1'
-	                        snDevOpsChange()
-	                    }
+	                    environment {
+				    		 SCANNER_HOME = tool 'sonarScanner'
+				  		}
+			           steps {
+			              snDevOpsStep()
+			              echo "build 1.1"
+			              snDevOpsChange()
+			               
+			               withSonarQubeEnv('Sonar_Cloud') {
+						       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+					       
+			        		}
+				       
+			           }
 	                }
 	                stage("Build1.2") {
 	                    stages {
 	                        stage("Build1.2.3") {
-	                            steps {
-	                                snDevOpsStep()
-	                                echo 'Build1.2.3'
-	                            }
+			                    environment {
+						    		 SCANNER_HOME = tool 'sonarScanner'
+						  		}
+					           steps {
+					              snDevOpsStep()
+					              snDevOpsChange()
+					               echo "build 1.2.3"
+					               withSonarQubeEnv('Sonar_Cloud') {
+								       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+							       
+					        		}
+						       
+					           }
+
 	                        }
 	                        stage("Build1.2.4") {
 	                            steps {
