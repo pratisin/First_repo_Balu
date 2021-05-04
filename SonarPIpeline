@@ -28,7 +28,7 @@ pipeline {
        
 	       environment {
 	    		 SCANNER_HOME = tool 'sonarScanner'
-	    		 echo $SCANNER_HOME
+	    		 echo '$SCANNER_HOME'
 	  		}
            steps {
               snDevOpsStep()
