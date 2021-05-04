@@ -33,6 +33,11 @@ pipeline {
 			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
 		       
         		}
+        		
+        		withSonarQubeEnv('sonarQube1') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+		       
+        		}
 	       
            }
            post {
