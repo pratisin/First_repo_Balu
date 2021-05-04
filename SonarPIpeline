@@ -28,12 +28,13 @@ pipeline {
        
 	       environment {
 	    		 SCANNER_HOME = tool 'sonarScanner'
+	    		 echo $SCANNER_HOME
 	  		}
            steps {
               snDevOpsStep()
 				snDevOpsChange(ignoreErrors: true)
                withSonarQubeEnv('Sonar_Cloud') {
-               		sh '${SCANNER_HOME}/bin/sonar-scanner --version'
+               		sh 'echo ${SCANNER_HOME}/bin/sonar-scanner --version'
 			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
 		       
         		}
