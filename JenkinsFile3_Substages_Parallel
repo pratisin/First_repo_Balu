@@ -17,7 +17,7 @@ pipeline {
 			              snDevOpsChange()
 			               
 			               withSonarQubeEnv('Sonar_Cloud') {
-						       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+						       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
 					       
 			        		}
 				       
@@ -34,7 +34,7 @@ pipeline {
 					              snDevOpsChange()
 					               echo "build 1.2.3"
 					               withSonarQubeEnv('Sonar_Cloud') {
-								       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+								       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
 							       
 					        		}
 						       
