@@ -19,7 +19,10 @@ pipeline {
 			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
 		       
         		}
-	       
+	           withSonarQubeEnv('sonarQube_local') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+		       
+        		}
            }
            
        }
@@ -36,6 +39,11 @@ pipeline {
                withSonarQubeEnv('Sonar_Cloud') {
                		sh 'echo ${SCANNER_HOME}/bin/sonar-scanner --version'
 			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
+		       
+        		}
+        		
+        		withSonarQubeEnv('sonarQube_local') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
 		       
         		}
 	       
