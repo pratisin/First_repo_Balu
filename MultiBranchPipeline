@@ -19,10 +19,14 @@ pipeline {
               snDevOpsStep()
                sh 'mvn test'
                
-               withSonarQubeEnv('Sonar_Cloud') {
-			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
+               //withSonarQubeEnv('Sonar_Cloud') {
+			      // sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
 		       
-        		}
+        		//}
+	        	withSonarQubeEnv('sonarQube_local') {
+	       				sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+       
+				}
 	       
            }
             post {
@@ -54,10 +58,11 @@ pipeline {
               snDevOpsStep()
               //snDevOpsChange()
                
-               withSonarQubeEnv('Sonar_Cloud') {
-			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
-		       
-        		}
+
+	        	withSonarQubeEnv('sonarQube_local') {
+	       				sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+       
+				}
 	       
            }
         }
@@ -72,10 +77,11 @@ pipeline {
               snDevOpsStep()
               //snDevOpsChange()
                
-               withSonarQubeEnv('Sonar_Cloud') {
-			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
-		       
-        		}
+
+	        	withSonarQubeEnv('sonarQube_local') {
+	       				sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+       
+				}
 	       
            }
         }
@@ -91,10 +97,11 @@ pipeline {
               snDevOpsStep()
               //snDevOpsChange()
                
-               withSonarQubeEnv('Sonar_Cloud') {
-			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
-		       
-        		}
+
+	        	withSonarQubeEnv('sonarQube_local') {
+	       				sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+       
+				}
 	       
            }
         }
