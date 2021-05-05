@@ -1,3 +1,5 @@
+package com.test;
+
 import java.util.ArrayList;
 public class One {
   String message = "foo";
