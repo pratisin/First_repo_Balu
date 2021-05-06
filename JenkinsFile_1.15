@@ -35,6 +35,7 @@ pipeline {
         	//	}
         		withSonarQubeEnv('sonarQube_local') {
 			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+			       }
 
 	       
            }
