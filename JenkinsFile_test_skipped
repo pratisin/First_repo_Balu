@@ -18,19 +18,19 @@ pipeline {
             when {
                 equals expected: 2, actual: 2
             }
-            environment {
-	    		 SCANNER_HOME = tool 'sonarScanner'
-	  		}
+            //environment {
+	    		 //SCANNER_HOME = tool 'sonarScanner'
+	  		//}
             steps {
                 echo 'Executing stage 2'
                // sh 'fail'
                 //snDevOpsChange()
                 sleep 5
                 //error("Build failed because of this and that..")
-                withSonarQubeEnv('sonarQube_local') 
-                {
-			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
-			    }
+                //withSonarQubeEnv('sonarQube_local') 
+                //{
+			       //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+			    //}
             }
         }
 
