@@ -14,7 +14,7 @@ pipeline {
   stages {
        stage('Build') {
            steps {
-              snDevOpsStep()
+              
               snDevOpsChange()
               sh 'mvn -B -DskipTests clean compile'
               // test commits-workitems
@@ -26,7 +26,7 @@ pipeline {
 	    		 SCANNER_HOME = tool 'sonarScanner'
 	  		}
            steps {
-              snDevOpsStep()
+              
                sh 'mvn test'
                
 				//withSonarQubeEnv('Sonar_Cloud') {
@@ -48,7 +48,7 @@ pipeline {
        }
       stage('Deploy') {
                  steps {
-                    snDevOpsStep()
+                    
                     echo 'Deploying the change....'
 		    		snDevOpsChange(ignoreErrors: true)
                     
@@ -57,7 +57,7 @@ pipeline {
 
      stage('PublishArtifacts') { 
 	            steps {
-	               snDevOpsStep()
+	               
 	               snDevOpsChange(ignoreErrors: true)
 	               echo 'Publishing Artifacts....'
                 	sleep(time:65,unit:"SECONDS")
@@ -75,7 +75,7 @@ pipeline {
 
 		stage('PublishPackage') {
          steps {
-            snDevOpsStep()
+            
 	    	snDevOpsChange(ignoreErrors: true)
             echo 'Publishing Package....'
             // format-1
