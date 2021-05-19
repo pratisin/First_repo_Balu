@@ -69,6 +69,7 @@ pipeline {
 	               //snDevOpsArtifact(artifactsPayload: """{"artifacts":[{"name":"sa-web.jar","version":"3.1","semanticVersion":"3.1.0","repositoryName":"services-1031"}]}""")
                 	snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
 					
+					echo "commit c2"
 	            }
 	            
 	        }
