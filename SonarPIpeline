@@ -15,14 +15,14 @@ pipeline {
            steps {
               snDevOpsStep()
 				snDevOpsChange(ignoreErrors: true)
-               //withSonarQubeEnv('Sonar_Cloud') {
-			       //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
-		       
-        		//}
-	           withSonarQubeEnv('sonarQube_local') {
-			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+               withSonarQubeEnv('Sonar_Cloud_Giri') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/mohan-sonar-scanner-cloud.properties'
 		       
         		}
+	          // withSonarQubeEnv('sonarQube_local') {
+		//	       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+		       
+        	//	}
            }
            
        }
@@ -36,11 +36,11 @@ pipeline {
            steps {
               snDevOpsStep()
 				snDevOpsChange(ignoreErrors: true)
-               //withSonarQubeEnv('Sonar_Cloud') {
+               withSonarQubeEnv('Sonar_Cloud_Giri') {
                		//sh 'echo ${SCANNER_HOME}/bin/sonar-scanner --version'
-			       //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/mohan-sonar-scanner-cloud.properties'
 		       
-        		//}
+        		}
         		
         		withSonarQubeEnv('sonarQube_local') {
 			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
