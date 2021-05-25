@@ -7,7 +7,7 @@ pipeline {
    }
   stages {
 
-       stage('SonarCloudScan1') {
+       stage('Build') {
        
 	       environment {
 	    		 SCANNER_HOME = tool 'sonarScanner'
@@ -27,12 +27,12 @@ pipeline {
            
        }
  	
- 	stage('SonarCloudScan2') {
+ 	stage('Deploy') {
        
-	       environment {
-	    		 SCANNER_HOME = tool 'sonarScanner'
+	       //environment {
+	    		 //SCANNER_HOME = tool 'sonarScanner'
 	    		 //echo '$SCANNER_HOME'
-	  		}
+	  		//}
            steps {
               
 				// snDevOpsChange(ignoreErrors: true)
