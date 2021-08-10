@@ -27,28 +27,5 @@ pipeline {
            
        }
  	
- 	stage('Deploy') {
-       
-	       //environment {
-	    		 //SCANNER_HOME = tool 'sonarScanner'
-	    		 //echo '$SCANNER_HOME'
-	  		//}
-           steps {
-              
-				// snDevOpsChange(ignoreErrors: true)
-               // withSonarQubeEnv('Sonar_Cloud_Giri') {
-               		//sh 'echo ${SCANNER_HOME}/bin/sonar-scanner --version'
-			       //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/mohan-sonar-scanner-cloud.properties'
-		       
-        		//}
-        		
-        		//withSonarQubeEnv('sonarQube_local') {
-			       //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
-		       
-        		//}
-	       		snDevOpsChange(ignoreErrors: true)
-           }
-           
-       }
- 	}
+ 	
 }
