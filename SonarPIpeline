@@ -15,8 +15,8 @@ pipeline {
            steps {
               
 				snDevOpsChange(ignoreErrors: true)
-               withSonarQubeEnv('Sonar_Cloud_Giri') {
-			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/mohan-sonar-scanner-cloud.properties'
+               withSonarQubeEnv('sonar_cloud') {
+			       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
 		       
         		}
 	          // withSonarQubeEnv('sonarQube_local') {
