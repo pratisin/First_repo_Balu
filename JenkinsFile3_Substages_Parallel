@@ -20,10 +20,10 @@ pipeline {
 						       //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
 					       
 			        		//}
-			        		withSonarQubeEnv('sonarQube_local') {
-			       				sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+			        		//withSonarQubeEnv('sonarQube_local') {
+			       				//sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
 		       
-        				}
+        					//}
 				       
 			           }
 	                }
@@ -34,21 +34,21 @@ pipeline {
 						    		 SCANNER_HOME = tool 'sonarScanner'
 						  		}
 					           steps {
-					              snDevOpsStep()
+					              
 					              snDevOpsChange()
 					               echo "build 1.2.3"
 
-						        	withSonarQubeEnv('sonarQube_local') {
-						       				sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+						        	//withSonarQubeEnv('sonarQube_local') {
+						       				//sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
 					       
-			        				}
+			        				//}
 						       
 					           }
 
 	                        }
 	                        stage("Build1.2.4") {
 	                            steps {
-	                                snDevOpsStep()
+	                                
 	                                echo 'Build1.2.4'
 	                                snDevOpsChange()
 	                                sh 'sleep 100'
@@ -63,7 +63,7 @@ pipeline {
 	            parallel {
 	                stage('Test1.1') {
 	                    steps {
-	                    	snDevOpsStep()
+	                    	
 	                         echo 'Test1.1'
 	                         snDevOpsChange()
 	                    }
@@ -75,7 +75,7 @@ pipeline {
 	                }
 	                stage('Test1.2') {
 	                    steps {
-	                        snDevOpsStep()
+	                        
 	                        snDevOpsChange()
 	                        echo 'Test1.2'
 	                        sh 'sleep 100'
