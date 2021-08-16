@@ -78,7 +78,7 @@ pipeline {
 	                        snDevOpsStep()
 	                        snDevOpsChange()
 	                        echo 'Test1.2'
-	                        sh 'sleep 100'
+	                        sh 'sleep 1'
 	                    }
 	                    post {
 	                        success {
