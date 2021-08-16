@@ -12,7 +12,7 @@ pipeline {
 				    		 SCANNER_HOME = tool 'sonarScanner'
 				  		}
 			           steps {
-			              snDevOpsStep()
+			              
 			              echo "build 1.1"
 			              snDevOpsChange()
 			               
@@ -51,7 +51,7 @@ pipeline {
 	                                
 	                                echo 'Build1.2.4'
 	                                snDevOpsChange()
-	                                sh 'sleep 100'
+	                                
 	                            }
 	                        }
 	                    }
@@ -78,7 +78,7 @@ pipeline {
 	                        
 	                        snDevOpsChange()
 	                        echo 'Test1.2'
-	                        sh 'sleep 100'
+	                        
 	                    }
 	                    post {
 	                        success {
