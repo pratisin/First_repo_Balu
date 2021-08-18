@@ -6,13 +6,7 @@ pipeline {
     stages {
     	
 	    stage('Build1') {
-		stage {
-			steps {
-			              echo "build1 : change from root node"
-			              snDevOpsChange()
-			}
 
-		}
 
 	            stages {
 
