@@ -7,6 +7,11 @@ pipeline {
     	
 	    stage('Build1') {
 	            stages {
+		    	steps {
+			              
+			              echo "build 1: Createing change for root node"
+			              snDevOpsChange()
+				}
 	                stage("Build1.1") {
 	                    environment {
 				    		 SCANNER_HOME = tool 'sonarScanner'
