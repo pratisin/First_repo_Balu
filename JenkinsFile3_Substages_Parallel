@@ -63,7 +63,7 @@ pipeline {
 	        }
 	        stage('Test1') {
 	        
-	            parallel {
+	            stages {
 	                stage('Test1.1') {
 	                    steps {
 	                    	
