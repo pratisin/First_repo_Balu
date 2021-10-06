@@ -14,4 +14,9 @@ public class LibraryTest {
         Library classUnderTest = new Library();
         assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
     }
+    @Test public void testAdd()
+    {
+        Library classUnderTest = new Library();
+        assertTrue("1+2 should be 3", classUnderTest.add(1,2)==3);
+    }
 }
