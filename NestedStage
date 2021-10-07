@@ -1,0 +1,61 @@
+def semanticVersion = "${env.BUILD_NUMBER}.0.0"
+def packageName = "devops_pipeline_demo_${env.BUILD_NUMBER}"
+def version = "${env.BUILD_NUMBER}.0"
+def artifactname = "sp-boot-app.jar"
+def repoName = "sp-boot-app-repo"
+
+
+pipeline {
+   agent any
+   tools {
+        maven 'Maven'
+    }
+    environment {
+	 SCANNER_HOME = tool 'sonarScanner'
+	}
+	
+    stages {
+		  stage('Build') {
+			    stages {
+			    		// nested stage with sonar summaries
+ 				      stage("Build.1") {
+				        stages{
+				        	stage('Build.2'){
+					        		steps {
+							          echo"build 1.1 executed"
+							          sh 'mvn test'
+			
+							          snDevOpsChange()
+							          sonarSummaries()
+							          //snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
+							          //snDevOpsPackage(name: "${packageName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
+							          
+							        }
+				        		    post {
+							        success {
+							          echo'Test -success'
+							          junit "**/target/surefire-reports/*.xml"
+							        }
+							      } 
+				        	
+				        	} // end of Build.2'
+				        
+				        } // end of stages
+				        
+				      }// end of build.1
+			      
+			    }// end of stages
+		    
+		  }// end of build
+			
+	} // end of stages
+} // end of pipeline
+
+def sonarSummaries() {
+
+
+    withSonarQubeEnv('sonarQube_local') {
+       	sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+	}
+	
+} // end of def sonarsummaries
