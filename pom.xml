@@ -53,6 +53,13 @@
 		<jetty.version>9.4.11.v20180605</jetty.version>
 		<jersey.version>2.27</jersey.version>
 		<java.version>11</java.version>
+
+	    <!-- JaCoCo Properties -->
+	    <jacoco.version>0.8.6</jacoco.version>
+	    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+	    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+	    <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+	    <sonar.language>java</sonar.language>
 		
 		<sonar.projectKey>balu-sn-devops_First_repo</sonar.projectKey>
 		<sonar.organization>balu-sn-devops</sonar.organization>
@@ -79,22 +86,22 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<!-- attached to Maven test phase -->
-					<execution>
-						<id>report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
+				<version>0.8.6</version>
+			    <executions>
+			        <execution>
+			            <id>jacoco-initialize</id>
+			            <goals>
+			                <goal>prepare-agent</goal>
+			            </goals>
+			        </execution>
+			        <execution>
+			            <id>jacoco-site</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>report</goal>
+			            </goals>
+			        </execution>
+    </executions>
 			</plugin>
 		
 			<plugin>
