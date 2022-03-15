@@ -1,4 +1,4 @@
-def artifactname = "rome-rp1-app.jar"
+def artifactname = "133testing-app.jar"
 def repoName = "rome-rp1-app-repo"
 def pipelineName = "balu_scripted_pipeline"
 def semanticVersion = "${env.BUILD_NUMBER}.0.0"
@@ -15,37 +15,22 @@ pipeline {
 	 SCANNER_HOME = tool 'sonarScanner'
 	}  
   stages {
-       stage('Build') {
-           steps {
-              sh 'mvn -B -DskipTests clean compile'
-           }
-       }
-       stage('Test') {
-           steps {
-              sh 'mvn test'
-           }
-           post {
-             always {
-                junit "**/target/surefire-reports/*.xml"
-             }
-           }
-       }
-       
-       stage('Pre-Prod') {
-		steps {
-                    sonarSummaries()
-                    snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
-           	    snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-                    
-                 }       
-       }
-      stage('Deploy') {
+
+      stage('Deploy &3') {
                  steps {
-                    echo 'Deploying the change....'
-                    snDevOpsChange(ignoreErrors:false)
+                    
+
+                    echo 'Deploying the change and artifacts in same stage....'
+                    snDevOpsChange()
+                    snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
+        			snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
+
+                    
+                    
+					
+                    
                  }
       }
-
  }
  
 }
