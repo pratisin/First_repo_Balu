@@ -1,51 +1,72 @@
-def artifactname = "133testing-app.jar"
-def repoName = "rome-rp1-app-repo"
-def pipelineName = "balu_scripted_pipeline"
+
 def semanticVersion = "${env.BUILD_NUMBER}.0.0"
-def packageName = "rome-rp1-package_${env.BUILD_NUMBER}"
+def packageName = "devops_pipeline_demo_${env.BUILD_NUMBER}"
 def version = "${env.BUILD_NUMBER}.0"
-def pkgName = "rome-rp1-package"
-
 pipeline {
-  agent any
-  tools {
-       maven 'Maven'
-   }
-   environment {
-	 SCANNER_HOME = tool 'sonarScanner'
-	}  
-  stages {
-
-      stage('Deploy &3') {
-                 steps {
-                    
-
-                    echo 'Deploying the change and artifacts in same stage....'
-		    sonarSummaries()
-                    snDevOpsChange()
-                    snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
-        			snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-
-                    
-                    
-					
-                    
-                 }
-      }
- }
- 
+    agent any
+    tools { 
+        maven 'Maven' 
+    }
+    environment {
+        SCANNER_HOME = tool 'sonarScanner'
+    }
+    stages {
+        stage("Build") {
+            steps {
+                echo "Building..."
+                sh 'mvn clean install -DskipTests=true'
+            }
+        }
+        stage("SoftwareQuality") {
+            steps {
+            	echo "Software Quality..."
+                sonarTest()
+            }
+        }
+        stage("Test") {
+            steps {
+            	echo "Testing..."
+                sh "mvn test -Dpublish"
+                junit "**/target/surefire-reports/*.xml"
+            }
+        }
+        stage("Deploy") {
+            steps {
+                echo "Deploying.."
+                snDevOpsArtifact(artifactsPayload:"""{"artifacts": [
+                    {"name": "demo1.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo1"},
+                    {"name": "demo2.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo2"},
+                    {"name": "demo3.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo3"},
+                    {"name": "demo4.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo4"},
+                    {"name": "demo5.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo5"}]}""")
+                }
+        }
+        stage("Prod") {
+            steps {
+            	echo "Prod deploy..."
+                snDevOpsPackage(name: "${packageName}", artifactsPayload: """{"artifacts": [
+                    {"name": "demo1.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo1"},
+                    {"name": "demo2.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo2"},
+                    {"name": "demo3.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo3"},
+                    {"name": "demo4.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo4"},
+                    {"name": "demo5.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo5"}]}""")
+            }
+        }
+	 stage("Change") {
+            steps {
+            	echo "Change..."
+                snDevOpsChange()
+            }
+        }
+    }
 }
-
-def sonarSummaries() {
-
-   //withSonarQubeEnv('Sonar_Cloud') {
-       //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
-   
-	//}
-	
-    withSonarQubeEnv('sonarQube_local') {
-       	sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
-   		// sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
+def sonarTest() {
+	withSonarQubeEnv('sonarQube_local') {
+		sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+		// sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
 	}
-	
-} // end of def sonarsummaries
+    //withSonarQubeEnv('SonarQube_Cloud') {
+	//    sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties '
+	    //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
+    //}
+}
