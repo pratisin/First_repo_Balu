@@ -8,32 +8,14 @@ pipeline {
         stage('Build@!#$ %') {
             steps {
                snDevOpsStep ()
-                sh 'mvn -B -DskipTests clean compile'
+                echo "build" 
             }
         }
-        stage('Test') { 
-            steps {
-               snDevOpsStep ()
-                //sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml' 
-                }
-            }
-        }
-    
-       
-    
-      stage('Publish') {
-             steps{
-                  snDevOpsStep ()
-                  sleep 30
-                  echo "sonar scan in progress"     
-              }
-      }
       
-       stage('Deploy') {
+       
+
+      
+       stage('Deploy @!#$ %') {
              steps{
                   snDevOpsStep ()
                   snDevOpsChange()
